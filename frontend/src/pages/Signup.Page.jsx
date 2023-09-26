@@ -31,6 +31,8 @@ const initialState = {
   email: "",
   pass: "",
 };
+
+// scema validation for form 
 const validationSchema = Yup.object().shape({
   firstName: Yup.string().required("First Name is required"),
   lastName: Yup.string().required("Last Name is required"),
@@ -40,7 +42,31 @@ const validationSchema = Yup.object().shape({
     .email("Invalid email address")
     .required("Email is required"),
   pass: Yup.string()
-    .min(6, "Password must be at least 6 characters")
+    .test(
+      "uppercase",
+      "Password must contain at least one uppercase letter",
+      (value) => {
+        return /[A-Z]/.test(value);
+      }
+    )
+    .test(
+      "lowercase",
+      "Password must contain at least one lowercase letter",
+      (value) => {
+        return /[a-z]/.test(value);
+      }
+    )
+    .test("number", "Password must contain at least one number", (value) => {
+      return /[0-9]/.test(value);
+    })
+    .test(
+      "specialChar",
+      "Password must contain at least one special character",
+      (value) => {
+        return /[@$!%*?&]/.test(value);
+      }
+    )
+    .min(8, "Password must be at least 8 characters")
     .required("Password is required"),
 });
 
@@ -94,7 +120,7 @@ export default function SignupPage() {
         />
       </Flex>
       <Flex
-        p={8}
+        p={5}
         flex={1}
         align={"baseline"}
         justify={"center"}
@@ -108,17 +134,23 @@ export default function SignupPage() {
                 isRequired
                 isInvalid={formik.touched.firstName && formik.errors.firstName}>
                 <FormLabel>First Name</FormLabel>
-                <Input
-                  name="firstName"
-                  value={formik.values.firstName}
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  placeholder="First Name"
-                  type="text"
-                  bg={"white.100"}
-                  size={{ base: "sm", md: "md" }}
-                />
-                <FormErrorMessage>{formik.errors.firstName}</FormErrorMessage>
+                <div
+                  style={{
+                    position: "relative",
+                    minHeight: "70px",
+                  }}>
+                  <Input
+                    name="firstName"
+                    value={formik.values.firstName}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    placeholder="First Name"
+                    type="text"
+                    bg={"white.100"}
+                    size={{ base: "sm", md: "md" }}
+                  />
+                  <FormErrorMessage>{formik.errors.firstName}</FormErrorMessage>
+                </div>
               </FormControl>
             </Box>
             <Box>
@@ -126,18 +158,20 @@ export default function SignupPage() {
                 id="lastName"
                 isRequired
                 isInvalid={formik.touched.lastName && formik.errors.lastName}>
-                <FormLabel>Last Name</FormLabel>
-                <Input
-                  name="lastName"
-                  value={formik.values.lastName}
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  placeholder="Last Name"
-                  type="text"
-                  bg={"white.100"}
-                  size={{ base: "sm", md: "md" }}
-                />
-                <FormErrorMessage>{formik.errors.lastName}</FormErrorMessage>
+                <FormLabel>Last Name</FormLabel>{" "}
+                <div style={{ position: "relative", minHeight: "70px" }}>
+                  <Input
+                    name="lastName"
+                    value={formik.values.lastName}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    placeholder="Last Name"
+                    type="text"
+                    bg={"white.100"}
+                    size={{ base: "sm", md: "md" }}
+                  />
+                  <FormErrorMessage>{formik.errors.lastName}</FormErrorMessage>
+                </div>
               </FormControl>
             </Box>
           </HStack>
@@ -147,33 +181,37 @@ export default function SignupPage() {
               isRequired
               isInvalid={formik.touched.phone && formik.errors.phone}>
               <FormLabel>Phone</FormLabel>
-              <Input
-                name="phone"
-                value={formik.values.phone}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                placeholder="Number"
-                type="number"
-                bg={"white.100"}
-                size={{ base: "sm", md: "md" }}
-              />
-              <FormErrorMessage>{formik.errors.phone}</FormErrorMessage>
+              <div style={{ position: "relative", minHeight: "70px" }}>
+                <Input
+                  name="phone"
+                  value={formik.values.phone}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  placeholder="Number"
+                  type="number"
+                  bg={"white.100"}
+                  size={{ base: "sm", md: "md" }}
+                />
+                <FormErrorMessage>{formik.errors.phone}</FormErrorMessage>
+              </div>
             </FormControl>
             <FormControl
               id="date"
               isRequired
               isInvalid={formik.touched.date && formik.errors.date}>
               <FormLabel>Date Of Birth</FormLabel>
-              <Input
-                name="date"
-                value={formik.values.date}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                type="date"
-                bg={"white.100"}
-                size={{ base: "sm", md: "md" }}
-              />{" "}
-              <FormErrorMessage>{formik.errors.date}</FormErrorMessage>
+              <div style={{ position: "relative", minHeight: "70px" }}>
+                <Input
+                  name="date"
+                  value={formik.values.date}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  type="date"
+                  bg={"white.100"}
+                  size={{ base: "sm", md: "md" }}
+                />{" "}
+                <FormErrorMessage>{formik.errors.date}</FormErrorMessage>
+              </div>
             </FormControl>
           </HStack>
           <FormControl
@@ -181,45 +219,49 @@ export default function SignupPage() {
             isRequired
             isInvalid={formik.touched.email && formik.errors.email}>
             <FormLabel>Email address</FormLabel>
-            <Input
-              name="email"
-              value={formik.values.email}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              placeholder="Email"
-              type="email"
-              bg={"white.100"}
-              size={{ base: "sm", md: "md" }}
-            />
-            <FormErrorMessage>{formik.errors.email}</FormErrorMessage>
+            <div style={{ position: "relative", minHeight: "70px" }}>
+              <Input
+                name="email"
+                value={formik.values.email}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                placeholder="Email"
+                type="email"
+                bg={"white.100"}
+                size={{ base: "sm", md: "md" }}
+              />
+              <FormErrorMessage>{formik.errors.email}</FormErrorMessage>
+            </div>
           </FormControl>
           <FormControl
             id="password"
             isRequired
             isInvalid={formik.touched.pass && formik.errors.pass}>
             <FormLabel>Password</FormLabel>
-            <InputGroup>
-              <Input
-                name="pass"
-                value={formik.values.pass}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                placeholder="Password"
-                type={showPassword ? "text" : "password"}
-                bg={"white.100"}
-                size={{ base: "sm", md: "md" }}
-              />
-              <InputRightElement h={"full"}>
-                <Button
-                  variant={"ghost"}
-                  onClick={() =>
-                    setShowPassword((showPassword) => !showPassword)
-                  }>
-                  {showPassword ? <ViewIcon /> : <ViewOffIcon />}
-                </Button>
-              </InputRightElement>
-            </InputGroup>
-            <FormErrorMessage>{formik.errors.pass}</FormErrorMessage>
+            <div style={{ position: "relative", minHeight: "70px" }}>
+              <InputGroup>
+                <Input
+                  name="pass"
+                  value={formik.values.pass}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  placeholder="Password"
+                  type={showPassword ? "text" : "password"}
+                  bg={"white.100"}
+                  size={{ base: "sm", md: "md" }}
+                />
+                <InputRightElement h={"full"}>
+                  <Button
+                    variant={"ghost"}
+                    onClick={() =>
+                      setShowPassword((showPassword) => !showPassword)
+                    }>
+                    {showPassword ? <ViewIcon /> : <ViewOffIcon />}
+                  </Button>
+                </InputRightElement>
+              </InputGroup>
+              <FormErrorMessage>{formik.errors.pass}</FormErrorMessage>
+            </div>
           </FormControl>
           <Stack spacing={6}>
             <Button

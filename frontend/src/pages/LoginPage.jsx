@@ -130,42 +130,46 @@ export default function LoginPage() {
             id="email"
             isInvalid={formik.touched.email && formik.errors.email}>
             <FormLabel>Email address</FormLabel>
-            <Input
-              name="email"
-              value={formik.values.email}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              type="email"
-              bg={"white.100"}
-              size={{ base: "sm", sm: "sm", md: "md" }}
-            />{" "}
-            <FormErrorMessage>{formik.errors.email}</FormErrorMessage>
+            <div style={{ position: "relative", minHeight: "70px" }}>
+              <Input
+                name="email"
+                value={formik.values.email}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                type="email"
+                bg={"white.100"}
+                size={{ base: "sm", sm: "sm", md: "md" }}
+              />{" "}
+              <FormErrorMessage>{formik.errors.email}</FormErrorMessage>
+            </div>
           </FormControl>
           <FormControl
             id="password"
             isInvalid={formik.touched.pass && formik.errors.pass}>
             <FormLabel>Password</FormLabel>
-            <InputGroup>
-              <Input
-                name="pass"
-                value={formik.values.pass}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                type={showPassword ? "text" : "password"}
-                bg={"white.100"}
-                size={{ base: "sm", sm: "sm", md: "md" }}
-              />{" "}
-              <InputRightElement h={"full"}>
-                <Button
-                  variant={"ghost"}
-                  onClick={() =>
-                    setShowPassword((showPassword) => !showPassword)
-                  }>
-                  {showPassword ? <ViewIcon /> : <ViewOffIcon />}
-                </Button>
-              </InputRightElement>
-            </InputGroup>
-            <FormErrorMessage>{formik.errors.pass}</FormErrorMessage>
+            <div style={{ position: "relative", minHeight: "70px" }}>
+              <InputGroup>
+                <Input
+                  name="pass"
+                  value={formik.values.pass}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  type={showPassword ? "text" : "password"}
+                  bg={"white.100"}
+                  size={{ base: "sm", sm: "sm", md: "md" }}
+                />{" "}
+                <InputRightElement h={"full"}>
+                  <Button
+                    variant={"ghost"}
+                    onClick={() =>
+                      setShowPassword((showPassword) => !showPassword)
+                    }>
+                    {showPassword ? <ViewIcon /> : <ViewOffIcon />}
+                  </Button>
+                </InputRightElement>
+              </InputGroup>
+              <FormErrorMessage>{formik.errors.pass}</FormErrorMessage>
+            </div>
           </FormControl>
           <Stack spacing={6} pt={6}>
             <Button
