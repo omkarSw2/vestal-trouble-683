@@ -16,6 +16,8 @@ import {
   InputGroup,
   FormErrorMessage,
   useToast,
+  Checkbox,
+  Text,
 } from "@chakra-ui/react";
 
 import loginimage from "../Assets/images/loginImage.svg";
@@ -73,51 +75,6 @@ export default function LoginPage() {
       }
     },
   });
-
-  //   const toast = useToast();
-
-  // useEffect(() => {
-  //   // console.log(datas);
-  // }, [datas]);
-  //   const handleLogin = () => {
-  //     let obj = {
-  //       email,
-  //       pass,
-  //     };
-  //     console.log(obj);
-  // // console.log("from Login.jsx", obj);
-
-  //   .then(() => {
-  //     // Display toast or perform other actions on successful login
-  //     // console.log(datas);
-  //     toast({
-  //       title: "Login Successful",
-  //       description: "You have successfully logged in.",
-  //       status: "success",
-  //       position: "top",
-  //       duration: 5000,
-  //       isClosable: true,
-  //     });
-  //   })
-  //   .catch((error) => {
-  //     // Handle errors, if needed
-  //     console.error("Login error:", error);
-  //     // Display an error toast or perform other error handling actions
-  //     toast({
-  //       title: "Login Failed",
-  //       description: "There was an error during login.",
-  //       status: "error",
-  //       position: "top",
-  //       duration: 5000,
-  //       isClosable: true,
-  //     });
-  //   });
-  //   };
-
-  //   if (data.isAuth) {
-  //     return <Navigate to={"/"} />;
-  //   }
-
   return (
     <Stack minH={"100vh"} direction={{ base: "column", md: "row" }}>
       <Flex flex={1} display={{ base: "none", lg: "inline-flex" }}>
@@ -140,7 +97,9 @@ export default function LoginPage() {
                 bg={"white.100"}
                 size={{ base: "sm", sm: "sm", md: "md" }}
               />{" "}
-              <FormErrorMessage>{formik.errors.email}</FormErrorMessage>
+              <FormErrorMessage>
+                <b>{formik.errors.email}</b>
+              </FormErrorMessage>
             </div>
           </FormControl>
           <FormControl
@@ -168,9 +127,20 @@ export default function LoginPage() {
                   </Button>
                 </InputRightElement>
               </InputGroup>
-              <FormErrorMessage>{formik.errors.pass}</FormErrorMessage>
+              <FormErrorMessage>
+                <b>{formik.errors.pass}</b>
+              </FormErrorMessage>
             </div>
           </FormControl>
+          <Stack
+            direction={{ base: "column", sm: "row" }}
+            align={"start"}
+            justify={"space-between"}>
+            <Checkbox bg={"white.100"}>Remember me</Checkbox>
+            <Link to={"/login/forgotpass"}>
+              <Text color={"blue.500"}>Forgot password?</Text>
+            </Link>
+          </Stack>
           <Stack spacing={6} pt={6}>
             <Button
               isLoading={isLoading}
