@@ -32,7 +32,7 @@ const initialState = {
   pass: "",
 };
 
-// scema validation for form 
+// scema validation for form
 const validationSchema = Yup.object().shape({
   firstName: Yup.string().required("First Name is required"),
   lastName: Yup.string().required("Last Name is required"),
@@ -149,7 +149,9 @@ export default function SignupPage() {
                     bg={"white.100"}
                     size={{ base: "sm", md: "md" }}
                   />
-                  <FormErrorMessage>{formik.errors.firstName}</FormErrorMessage>
+                  <FormErrorMessage>
+                    <b>{formik.errors.firstName}</b>
+                  </FormErrorMessage>
                 </div>
               </FormControl>
             </Box>
@@ -170,7 +172,9 @@ export default function SignupPage() {
                     bg={"white.100"}
                     size={{ base: "sm", md: "md" }}
                   />
-                  <FormErrorMessage>{formik.errors.lastName}</FormErrorMessage>
+                  <FormErrorMessage>
+                    <b>{formik.errors.lastName}</b>
+                  </FormErrorMessage>
                 </div>
               </FormControl>
             </Box>
@@ -192,7 +196,9 @@ export default function SignupPage() {
                   bg={"white.100"}
                   size={{ base: "sm", md: "md" }}
                 />
-                <FormErrorMessage>{formik.errors.phone}</FormErrorMessage>
+                <FormErrorMessage>
+                  <b>{formik.errors.phone}</b>
+                </FormErrorMessage>
               </div>
             </FormControl>
             <FormControl
@@ -210,7 +216,9 @@ export default function SignupPage() {
                   bg={"white.100"}
                   size={{ base: "sm", md: "md" }}
                 />{" "}
-                <FormErrorMessage>{formik.errors.date}</FormErrorMessage>
+                <FormErrorMessage>
+                  <b>{formik.errors.date}</b>
+                </FormErrorMessage>
               </div>
             </FormControl>
           </HStack>
@@ -230,7 +238,9 @@ export default function SignupPage() {
                 bg={"white.100"}
                 size={{ base: "sm", md: "md" }}
               />
-              <FormErrorMessage>{formik.errors.email}</FormErrorMessage>
+              <FormErrorMessage>
+                <b>{formik.errors.email}</b>
+              </FormErrorMessage>
             </div>
           </FormControl>
           <FormControl
@@ -260,7 +270,9 @@ export default function SignupPage() {
                   </Button>
                 </InputRightElement>
               </InputGroup>
-              <FormErrorMessage>{formik.errors.pass}</FormErrorMessage>
+              <FormErrorMessage>
+                <b>{formik.errors.pass}</b>
+              </FormErrorMessage>
             </div>
           </FormControl>
           <Stack spacing={6}>
