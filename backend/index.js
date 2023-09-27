@@ -1,24 +1,24 @@
-const express=require("express")
-const { connection } = require("mongoose")
-const { UserModel } = require("./model/user.model")
-const { userRouter } = require("./routes/userroutes")
+const express = require("express");
+const { connection } = require("mongoose");
+const { UserModel } = require("./model/user.Model");
+const { userRouter } = require("./routes/userroutes");
 require("dotenv").config();
-const cors=require("cors")
-const app=express()
-app.use(express.json())
-app.use(cors())
+const cors = require("cors");
+const app = express();
+app.use(express.json());
+app.use(cors());
 
-app.get("/",(req,res)=>{
-    res.send("hello")
-})
-app.use("/user",userRouter);
+app.get("/", (req, res) => {
+  res.send("hello");
+});
+app.use("/users", userRouter);
 
-app.listen(process.env.PORT,async()=>{
-    try {
-        await connection;
-        console.log("db connected")
-        console.log("server  is connected")
-    } catch (error) {
-        console.log(error)
-    }
-})
+app.listen(process.env.PORT, async () => {
+  try {
+    await connection;
+    console.log("db connected");
+    console.log("server  is connected");
+  } catch (error) {
+    console.log(error);
+  }
+});
