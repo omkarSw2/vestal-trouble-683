@@ -1,42 +1,27 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useState } from 'react'
+import AdminHeader from '../componant/AdminComponents/AdminHeader'
+import AdminSidebar from '../componant/AdminComponents/AdminSidebar'
+import AdminHome from '../componant/AdminComponents/AdminHome'
+import "../pages/Admin.css"
+import {Routes,Route} from "react-router-dom"
 
-function App() {
-  const [users, setUsers] = useState([]);
+const Admin = () => {
+  const [openSidebarToggle, setOpenSidebarToggle] = useState(false)
 
-  useEffect(() => {
-    axios.get(' url')
-      .then((response) => {
-        setUsers(response.data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, []);
+  const OpenSidebar = () => {
+    setOpenSidebarToggle(!openSidebarToggle)
+  }
 
   return (
-    <div className="App">
-      <h1>Admin Panel</h1>
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Email</th>
-          </tr>
-        </thead>
-        <tbody>
-          {users.map((user) => (
-            <tr key={user.id}>
-              <td>{user.id}</td>
-              <td>{user.name}</td>
-              <td>{user.email}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <div className='grid-container'>
+      <AdminHeader OpenSidebar={OpenSidebar}/>
+      <AdminSidebar openSidebarToggle={openSidebarToggle} OpenSidebar={OpenSidebar}/>
+      <Routes>
+        <Route path="/adminDashboard" element={<AdminHome />}/>
+      </Routes>
+      
     </div>
-  );
+  )
 }
 
-export default App;
+export default Admin
