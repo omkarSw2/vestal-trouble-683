@@ -43,6 +43,7 @@ userRouter.get("/usercount", async (req, res) => {
 // ! Register User
 userRouter.post("/register", async (req, res) => {
   const { email, pass, ...restOfRequestBody } = req.body;
+  console.log("inside register");
   try {
     const emailexist = await UserModel.findOne({ email: email });
 
@@ -63,31 +64,8 @@ userRouter.post("/register", async (req, res) => {
           });
           await user.save();
           const { pass, ...data } = user.toObject();
-          const token = jwt.sign(
-            {
-              email: data.email,
-              userID: data._id,
-              userName: data.full_Name,
-            },
-            process.env.TOKEN_KEY,
-            {
-              expiresIn: "2 days",
-            }
-          );
-          const rtoken = jwt.sign(
-            {
-              email: data.email,
-              userID: data._id,
-              userName: data.full_Name,
-            },
-            process.env.REFRESH_TOKEN_KEY,
-            {
-              expiresIn: "7d",
-            }
-          );
-          return res
-            .status(201)
-            .send({ message: "New user is created", data, token, rtoken });
+
+          return res.status(201).send({ message: "New user is created", data });
         }
       });
     } else {
@@ -118,7 +96,7 @@ userRouter.post("/login", async (req, res) => {
             {
               email: emailcheck.email,
               userID: emailcheck._id,
-              userName: emailcheck.full_Name,
+              userName: emailcheck.first_Name,
             },
             process.env.TOKEN_KEY,
             {
@@ -130,7 +108,7 @@ userRouter.post("/login", async (req, res) => {
             {
               email: emailcheck.email,
               userID: emailcheck._id,
-              userName: emailcheck.full_Name,
+              userName: emailcheck.first_Name,
             },
             process.env.REFRESH_TOKEN_KEY,
             {
@@ -139,7 +117,7 @@ userRouter.post("/login", async (req, res) => {
           );
           return res
             .send({
-              message: `Welcome ${emailcheck.firstname}`,
+              message: `Welcome ${emailcheck.first_Name}`,
               user: sanitizedEmailcheck,
               token,
               rtoken,
