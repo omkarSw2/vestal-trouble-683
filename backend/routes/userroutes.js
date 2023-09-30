@@ -43,6 +43,7 @@ userRouter.get("/usercount", async (req, res) => {
 // ! Register User
 userRouter.post("/register", async (req, res) => {
   const { email, pass, ...restOfRequestBody } = req.body;
+  console.log("inside register");
   try {
     const emailexist = await UserModel.findOne({ email: email });
 
@@ -63,6 +64,10 @@ userRouter.post("/register", async (req, res) => {
           });
           await user.save();
           const { pass, ...data } = user.toObject();
+
+
+          return res.status(201).send({ message: "New user is created", data });
+
           const token = jwt.sign(
             {
               email: data.email,
@@ -88,6 +93,7 @@ userRouter.post("/register", async (req, res) => {
           return res
             .status(201)
             .send({ message: "New user is created", data, token, rtoken });
+
         }
       });
     } else {

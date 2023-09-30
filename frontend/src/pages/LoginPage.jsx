@@ -1,5 +1,3 @@
-"use client";
-
 import {
   Button,
   //   Checkbox,
@@ -21,12 +19,14 @@ import {
 } from "@chakra-ui/react";
 
 import loginimage from "../Assets/images/loginImage.svg";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { BeatLoader } from "react-spinners";
+import { useDispatch, useSelector } from "react-redux";
+import { LoginUser } from "../redux/UserAuth/Action";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string()
@@ -38,8 +38,12 @@ const validationSchema = Yup.object().shape({
 export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const data = useSelector((store) => store.authReducer);
+  const dispatch = useDispatch();
 
   const toast = useToast();
+
+  // console.log("data form LoginPage", data);
 
   const formik = useFormik({
     initialValues: {
@@ -49,22 +53,29 @@ export default function LoginPage() {
     validationSchema: validationSchema,
     onSubmit: async (values, { resetForm }) => {
       setIsLoading(true); // Set loading to true during form submission
-
       try {
-        await new Promise((resolve) => setTimeout(resolve, 2000));
-
-        // Assuming the login is successful
-        console.log(values);
-
-        // Display a success toast or perform other actions
-        toast({
-          title: "Login Successful",
-          description: `${values.email} You have successfully logged in.`,
-          status: "success",
-          position: "top",
-          duration: 5000,
-          isClosable: true,
-        });
+        await dispatch(LoginUser(values))
+          .then((data) => {
+            // console.log("Data from Login .then", data.message);
+            toast({
+              title: "Login Successful",
+              description: `${data.message} You have successfully logged in.`,
+              status: "success",
+              position: "top",
+              duration: 5000,
+              isClosable: true,
+            });
+          })
+          .catch((err) => {
+            toast({
+              title: "Login Error",
+              description: `${err.message} .`,
+              status: "error",
+              position: "top",
+              duration: 5000,
+              isClosable: true,
+            });
+          });
 
         resetForm();
       } catch (error) {
@@ -75,6 +86,10 @@ export default function LoginPage() {
       }
     },
   });
+
+  if (data.isAuth) {
+    return <Navigate to={"/"} replace={true} />;
+  }
   return (
     <Stack minH={"100vh"} direction={{ base: "column", md: "row" }}>
       <Flex flex={1} display={{ base: "none", lg: "inline-flex" }}>

@@ -18,10 +18,12 @@ import {
 import registerImage from "../Assets/images/registerImage.svg";
 import { useState } from "react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { BeatLoader } from "react-spinners";
+import { useDispatch } from "react-redux";
+import { RegisterUser } from "../redux/UserAuth/Action";
 
 const initialState = {
   firstName: "",
@@ -37,7 +39,13 @@ const validationSchema = Yup.object().shape({
   firstName: Yup.string().required("First Name is required"),
   lastName: Yup.string().required("Last Name is required"),
   phone: Yup.number().required("Phone Number is required"),
-  date: Yup.date().required("Date of Birth is required"),
+  date: Yup.date()
+    .required("Date of Birth is required")
+    .test("is-age-18", "You must be at least 18 years old", function (value) {
+      const minDate = new Date();
+      minDate.setFullYear(minDate.getFullYear() - 18);
+      return value <= minDate;
+    }),
   email: Yup.string()
     .email("Invalid email address")
     .required("Email is required"),
@@ -74,6 +82,9 @@ export default function SignupPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const toast = useToast();
+  const navigate = useNavigate();
+  // const data = useSelector((store) => store.authReducer);
+  const dispatch = useDispatch();
 
   const formik = useFormik({
     initialValues: initialState,
@@ -83,20 +94,47 @@ export default function SignupPage() {
       setIsLoading(true);
 
       try {
-        await new Promise((resolve) => setTimeout(resolve, 2000));
+        // await new Promise((resolve) => setTimeout(resolve, 2000));
+        // console.log("from Signup line 97", values);
+        const obj = {
+          first_Name: values.firstName,
+          last_Name: values.lastName,
+          phone_Number: values.phone,
+          date_of_birth: values.date,
+          email: values.email,
+          pass: values.pass,
+        };
+        // console.log("from Signup line 106", obj);
+        await dispatch(RegisterUser(obj))
+          .then((data) => {
+            // console.log("Data from Signup .then", data.message);
+            navigate("/login", { replace: true });
+            toast({
+              title: "Register Successful",
+              description: `${data.message} Please Login `,
+              status: "success",
+              position: "top",
+              duration: 5000,
+              isClosable: true,
+            });
+
+            // return <Navigate to={"/login"} replace={true} />;
+          })
+          .catch((err) => {
+            toast({
+              title: "Login Error",
+              description: `${err.message} .`,
+              status: "error",
+              position: "top",
+              duration: 5000,
+              isClosable: true,
+            });
+          });
 
         // Assuming the login is successful
-        console.log(values);
+        // console.log(values);
 
         // Display a success toast or perform other actions
-        toast({
-          title: "Login Successful",
-          description: `${values.email} You have successfully logged in.`,
-          status: "success",
-          position: "top",
-          duration: 5000,
-          isClosable: true,
-        });
 
         resetForm();
       } catch (error) {
