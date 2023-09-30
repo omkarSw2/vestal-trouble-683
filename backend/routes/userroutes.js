@@ -67,7 +67,7 @@ userRouter.post("/register", async (req, res) => {
             {
               email: data.email,
               userID: data._id,
-              userName: data.full_Name,
+              userName: data.firstname,
             },
             process.env.TOKEN_KEY,
             {
@@ -78,7 +78,7 @@ userRouter.post("/register", async (req, res) => {
             {
               email: data.email,
               userID: data._id,
-              userName: data.full_Name,
+              userName: data.firstname,
             },
             process.env.REFRESH_TOKEN_KEY,
             {
@@ -118,7 +118,7 @@ userRouter.post("/login", async (req, res) => {
             {
               email: emailcheck.email,
               userID: emailcheck._id,
-              userName: emailcheck.full_Name,
+              userName: emailcheck.firstname,
             },
             process.env.TOKEN_KEY,
             {
@@ -130,7 +130,7 @@ userRouter.post("/login", async (req, res) => {
             {
               email: emailcheck.email,
               userID: emailcheck._id,
-              userName: emailcheck.full_Name,
+              userName: emailcheck.firstname,
             },
             process.env.REFRESH_TOKEN_KEY,
             {
@@ -144,7 +144,7 @@ userRouter.post("/login", async (req, res) => {
               token,
               rtoken,
             })
-            .select("-pass");
+          
         } else {
           return res.send({ message: "Password does Not Match " });
         }
