@@ -14,7 +14,7 @@ const MainRoute = () => {
       <Route path="/login" element={<LoginPage />} />
 
       <Route path="/login/forgotpass" element={<ForgotPasswordForm />} />
-      <Route path="/login/resetPassword" element={<ResetPassword />} />
+      <Route path="/login/resetPassword/:token" element={<ResetPassword />} />
       <Route path="/register" element={<SignupPage />} />
       <Route path="/" element={<HomePage />} />
       <Route path="/singleProduct/:id" element={<SinglePage />} />

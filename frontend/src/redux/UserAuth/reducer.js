@@ -1,9 +1,11 @@
 import {
   FAILURE,
+  FORGOTPASS_SUCCESS,
   LOGIN_SUCCESS,
   LOGOUT,
   REGISTER_SUCCESS,
   REQUEST,
+  RESETPASS_SUCCESS,
 } from "./ActionTypes";
 
 const initialState = {
@@ -39,6 +41,10 @@ export const reducer = (state = initialState, { type, payload }) => {
     case FAILURE:
       return { ...state, isLoading: false, isError: true, isAuth: false };
     case REGISTER_SUCCESS:
+      return { ...state, isLoading: false, isError: true, isAuth: false };
+    case FORGOTPASS_SUCCESS:
+      return { ...state, isLoading: false, isError: true, isAuth: false };
+    case RESETPASS_SUCCESS:
       return { ...state, isLoading: false, isError: true, isAuth: false };
     case LOGOUT:
       return { ...initialState };

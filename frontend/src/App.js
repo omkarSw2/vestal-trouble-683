@@ -2,24 +2,14 @@ import "./App.css";
 import MainRoute from "./Auth/MainRoute";
 
 import Footer from "./componant/Footer";
-import { Try } from "./componant/Try";
-import Admin from "./pages/Admin";
-
-import { HomePage } from "./pages/HomePage";
+import Navbar from "./componant/Navbar";
 
 function App() {
   return (
     <div className="App">
+      <Navbar />
       <MainRoute />
-
-      {/* <HomePage /> */}
-
-
-   {/*<Admin/>*/}
-
-
-      {/* <Footer /> */}
-      {/* <Try /> */}
+      <Footer />
     </div>
   );
 }
