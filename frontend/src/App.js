@@ -10,14 +10,14 @@ import { HomePage } from "./pages/HomePage";
 
 function App() {
   return (
-    <div className="App" style={{backgroundColor: "gray"}}>
+    <div className="App" style={{}}>
       <MainRoute />
 
       {/* <HomePage /> */}
    
 
       {/* <Footer /> */}
-      {/* <Deviation /> */}
+      <Deviation />
       {/* <Try /> */}
     </div>
   );
