@@ -65,7 +65,6 @@ userRouter.post("/register", async (req, res) => {
           await user.save();
           const { pass, ...data } = user.toObject();
 
-
           return res.status(201).send({ message: "New user is created", data });
 
           const token = jwt.sign(
@@ -93,7 +92,6 @@ userRouter.post("/register", async (req, res) => {
           return res
             .status(201)
             .send({ message: "New user is created", data, token, rtoken });
-
         }
       });
     } else {
@@ -143,14 +141,12 @@ userRouter.post("/login", async (req, res) => {
               expiresIn: "7d",
             }
           );
-          return res
-            .send({
-              message: `Welcome ${emailcheck.first_Name}`,
-              user: sanitizedEmailcheck,
-              token,
-              rtoken,
-            })
-          
+          return res.send({
+            message: `Welcome ${emailcheck.first_Name}`,
+            user: sanitizedEmailcheck,
+            token,
+            rtoken,
+          });
         } else {
           return res.send({ message: "Password does Not Match " });
         }
@@ -192,7 +188,7 @@ userRouter.post("/forgotpass", async (req, res) => {
     <h4>Hello,</h4>
     <p>We received a request to reset your password for your account.</p>
     <p>To reset your password, click on the link below:</p>
-    <p><b><a href=${process.env.WEBURL}/users/reset_password/${token} target="_blank">Reset Password</a></b></p>
+    <p><b><a href=http://localhost:3000/login/resetPassword/${token} target="_blank">Reset Password</a></b></p>
     <p>If you didn't request this password reset, you can safely ignore this email.</p>
     <p><b>Thank you,</b></p>
     <p>Your Company Name</p>  

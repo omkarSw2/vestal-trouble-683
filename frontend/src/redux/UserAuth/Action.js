@@ -1,9 +1,11 @@
 import axios from "axios";
 import {
   FAILURE,
+  FORGOTPASS_SUCCESS,
   LOGIN_SUCCESS,
   REGISTER_SUCCESS,
   REQUEST,
+  RESETPASS_SUCCESS,
 } from "./ActionTypes";
 
 const LoginUser = (obj) => async (dispatch) => {
@@ -44,5 +46,47 @@ const RegisterUser = (obj) => async (dispatch) => {
     // Uncomment this line to re-throw the error for further handling
   }
 };
+const forgotLink = (obj) => async (dispatch) => {
+  dispatch({ type: REQUEST });
+  //   console.log("request from RegisterUser line 26");
 
-export { LoginUser, RegisterUser };
+  try {
+    const response = await axios.post(
+      `http://localhost:8080/users/forgotpass`,
+      obj
+    );
+
+    dispatch({ type: FORGOTPASS_SUCCESS });
+    // console.log(response.data);
+    return response.data;
+  } catch (error) {
+    dispatch({ type: FAILURE });
+    // console.log("error on the RegisterUser line 40", error);
+    console.log(error);
+    throw error;
+    // Uncomment this line to re-throw the error for further handling
+  }
+};
+const ResetPass = (data) => async (dispatch) => {
+  dispatch({ type: REQUEST });
+  //   console.log("request from RegisterUser line 26");
+
+  try {
+    const response = await axios.post(
+      `http://localhost:8080/users/reset_password/${data.token}`,
+      data.value
+    );
+
+    dispatch({ type: RESETPASS_SUCCESS });
+    // console.log(response.data);
+    return response.data;
+  } catch (error) {
+    dispatch({ type: FAILURE });
+    // console.log("error on the RegisterUser line 40", error);
+    console.log(error);
+    throw error;
+    // Uncomment this line to re-throw the error for further handling
+  }
+};
+
+export { LoginUser, RegisterUser, forgotLink, ResetPass };
