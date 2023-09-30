@@ -4,8 +4,10 @@ import { AiOutlineStar } from "react-icons/ai";
 import { FaRegCommentAlt, RiVipDiamondLine } from "react-icons/fa";
 import { SlDiamond } from "react-icons/sl";
 import { BsThreeDots } from "react-icons/bs";
-import { Image, Stack } from '@chakra-ui/react';
+import { Button, Image, Stack } from '@chakra-ui/react';
 import { Text } from '@chakra-ui/react'
+import { CommetBox } from '../componant/Emoji';
+import EmojiButton from "../componant/EmojiButton"
 
 export const SinglePage = () => {
 
@@ -45,13 +47,20 @@ export const SinglePage = () => {
         <div style={{ display: "flex", paddingTop: "20px",marginBottom: "20px", justifyContent: "space-between" }}>
 
           <div className='media' >
-            <div style={{  paddingTop: "4px", marginRight: "5px" }}>
-              <AiOutlineStar color='white' style={{ fontSize: "20px", fontWeight: "bolder" }} />
+
+            <Button   style={{ border: 'none', background: 'none', padding: '0', outline: 'none' }}>
+            <div style={{  paddingTop: "4px", marginRight: "5px" }} >
+              
+              <AiOutlineStar color='white' style={{ fontSize: "20px", fontWeight: "bolder" }} className='favouriteBtn' />
+              
             </div>
 
             <div  className='media' style={{ marginRight: "20px" }}>
-            <Text fontWeight={'bolder'} color={'white'}>Favourite</Text>
+            <Text fontWeight={'bolder'} color={'white'} className='favouriteBtn'>Favourite</Text>
             </div>
+            </Button>
+
+            <Button style={{ border: 'none', background: 'none', padding: '0', outline: 'none' }}>
 
             <div style={{paddingTop: "6px", marginRight: "5px" }}>
               <FaRegCommentAlt color='white' style={{ fontWeight: "bolder", fontSize: "18px" }} />
@@ -60,7 +69,10 @@ export const SinglePage = () => {
             <div  className='media' style={{ }}>
             <Text fontWeight={'bolder'} color={'white'}>Comments</Text>
             </div>
+
+            </Button>
           </div>
+        
 
           <div  className='media diamonds' >
 
@@ -158,6 +170,12 @@ export const SinglePage = () => {
 
       </div>
 
+      <div>
+     
+        {/* <CommetBox /> */}
+        <EmojiButton />
+      </div>
+
 
       {/* </div> */}
 
@@ -233,6 +251,11 @@ background-color: #161a1f;
   width: 8%;
   /* border: 2px solid white; */
   justify-content: space-between;
+}
+
+
+.favouriteBtn:hover{
+  color: green;
 }
 
     

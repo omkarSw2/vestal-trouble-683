@@ -4,9 +4,15 @@ const { UserModel } = require("./model/user.Model");
 const { userRouter } = require("./routes/userroutes");
 require("dotenv").config();
 const cors = require("cors");
+const {uploadRoute} = require('./routes/UpladRoutes')
 const app = express();
 app.use(express.json());
 app.use(cors());
+app.use('/uploads', express.static('uploads'));
+// app.use(express.static('uploads'));
+
+app.use('/posts', uploadRoute)
+
 
 app.get("/", (req, res) => {
   res.send("hello");

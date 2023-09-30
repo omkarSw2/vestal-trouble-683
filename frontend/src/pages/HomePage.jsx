@@ -121,51 +121,7 @@ export const HomePage = () => {
             <section id="photos">
                 {
                     data.map((el, index) => (
-                        // <div className='container'>
-                        //     <img className='contImage'  src={el.image} alt='im' />
-
-                        //     <div className='bottom-left-user'>
-                        //         {el.user}
-                        //     </div>
-
-                        //     <div className='bottom-left'>
-                        //         <Wrap>
-                        //             <WrapItem>
-                        //                 <Avatar
-                        //                     size='xs'
-                        //                     name='Kola Tioluwani'
-                        //                     src={el.userImage}
-                        //                 />{' '}
-
-                                        
-                        //             </WrapItem>
-                        //         </Wrap>
-                        //         <div style={{display: "flex",justifyContent: "space-between", alignItems: "center", border: "2px solid white", marginLeft: "5px"}}>
-                        //                     <div>
-                        //                     user nane
-                        //                     </div>
-                        //                 </div>
-                        //     </div>
-
-
-                        //     <div className='bottom-comment'>
-                        //         <div style={{fontSize: "15px", paddingBottom: "5px", marginRight: "5px"}}>
-                        //             {el.comments}
-                        //         </div>
-                        //         <FaRegCommentAlt style={{fontWeight: "bolder"}} />
-                               
-                        //     </div>
-
-                        //     <div className='star'>
-
-                        //     <div style={{fontSize: "15px", paddingBottom: "0px", marginRight: "5px"}}>
-                        //             {el.favourite}
-                        //         </div>
-                        //         <AiOutlineStar style={{fontSize: "20px",  fontWeight: "bolder"}} />
-                              
-                        //     </div>
-
-                        // </div>
+                       
                         <CardComponent key={index} {...el} />
                     ))
                 }
