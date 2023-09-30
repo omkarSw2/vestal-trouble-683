@@ -3,6 +3,7 @@ import MainRoute from "./Auth/MainRoute";
 
 import Footer from "./componant/Footer";
 import { Try } from "./componant/Try";
+import Admin from "./pages/Admin";
 
 import { HomePage } from "./pages/HomePage";
 
@@ -12,6 +13,10 @@ function App() {
       <MainRoute />
 
       {/* <HomePage /> */}
+
+
+   {/*<Admin/>*/}
+
 
       {/* <Footer /> */}
       {/* <Try /> */}
