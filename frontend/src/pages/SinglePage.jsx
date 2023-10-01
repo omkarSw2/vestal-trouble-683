@@ -4,14 +4,21 @@ import { AiOutlineStar } from "react-icons/ai";
 import { FaRegCommentAlt, RiVipDiamondLine } from "react-icons/fa";
 import { SlDiamond } from "react-icons/sl";
 import { BsThreeDots } from "react-icons/bs";
-import { Image, Stack } from '@chakra-ui/react';
+import { SlUser } from "react-icons/sl";
+import { Button, Image, Stack, Textarea } from '@chakra-ui/react';
 import { Text } from '@chakra-ui/react'
+import { useParams, useSearchParams } from 'react-router-dom';
 
 export const SinglePage = () => {
 
   const [isHeightGreater, setIsHeightGreater] = useState(false);
-
+  let { id } = useParams()
   const [fullScreen, setFullScreen] = useState(false);
+
+  const [showCommentSubmitBtn, setShowCommentSubmitBtn] = useState(false)
+
+  console.log("ID", id)
+
 
   const toggleFullScreen = () => {
     setFullScreen(!fullScreen);
@@ -24,6 +31,31 @@ export const SinglePage = () => {
       setIsHeightGreater(true);
     }
   };
+
+  const commentBtnHandler=()=>{
+    alert("Commented")
+    setShowCommentSubmitBtn(false)
+  }
+
+  const cancelBtnHandler = ()=>{
+    setShowCommentSubmitBtn(false)
+  }
+
+  const userData =
+  {
+    "_id": {
+      "$oid": "65190e166e8d09d55af80dc4"
+    },
+    comments: ["love it", "beautiful", "great Art"],
+    favourite: 34,
+    postTitle: "ThunderBolt",
+    image: " https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/bb5ba0cb-0fb5-4a48-aed3-7d515c04f4e9/dfi1wsh-98586088-e76f-4db4-af33-958e48336584.jpg/v1/fit/w_414,h_276,q_70,strp/stay_in_the_light_way_by_zardo_dfi1wsh-414w.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NjAwIiwicGF0aCI6IlwvZlwvYmI1YmEwY2ItMGZiNS00YTQ4LWFlZDMtN2Q1MTVjMDRmNGU5XC9kZmkxd3NoLTk4NTg2MDg4LWU3NmYtNGRiNC1hZjMzLTk1OGU0ODMzNjU4NC5qcGciLCJ3aWR0aCI6Ijw9OTAwIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmltYWdlLm9wZXJhdGlvbnMiXX0.a8kfpSCHk9Zyfr9bS3V52BL7vPbWVSbVufhoZJh5CKE",
+    user: "Raj",
+    userImage: "https://a.deviantart.net/avatars-big/n/n/nnway0.jpg?8"
+
+
+  }
+
 
   const data = {
     image: "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/ff8ef9fb-5c46-4bed-afce-d22225018708/dfphtdz-2e78f782-a6ec-4ec8-b3f9-1c4807422673.png/v1/fit/w_828,h_474,q_70,strp/paysage_bucolique_sublime_envoutant_petit_voilier_by_naltear_dfphtdz-414w-2x.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9ODk2IiwicGF0aCI6IlwvZlwvZmY4ZWY5ZmItNWM0Ni00YmVkLWFmY2UtZDIyMjI1MDE4NzA4XC9kZnBodGR6LTJlNzhmNzgyLWE2ZWMtNGVjOC1iM2Y5LTFjNDgwNzQyMjY3My5wbmciLCJ3aWR0aCI6Ijw9MTU2OCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.N8uwHDqKpADMo7AyK9bOFDOH9ZB1PfgU0efts5Ws2ow",
@@ -42,34 +74,34 @@ export const SinglePage = () => {
 
       <div>
 
-        <div style={{ display: "flex", paddingTop: "20px",marginBottom: "20px", justifyContent: "space-between" }}>
+        <div style={{ display: "flex", paddingTop: "20px", marginBottom: "20px", justifyContent: "space-between" }}>
 
           <div className='media' >
-            <div style={{  paddingTop: "4px", marginRight: "5px" }}>
+            <div style={{ paddingTop: "4px", marginRight: "5px" }}>
               <AiOutlineStar color='white' style={{ fontSize: "20px", fontWeight: "bolder" }} />
             </div>
 
-            <div  className='media' style={{ marginRight: "20px" }}>
-            <Text fontWeight={'bolder'} color={'white'}>Favourite</Text>
+            <div className='media' style={{ marginRight: "20px" }}>
+              <Text fontWeight={'bolder'} color={'white'}>Favourite</Text>
             </div>
 
-            <div style={{paddingTop: "6px", marginRight: "5px" }}>
+            <div style={{ paddingTop: "6px", marginRight: "5px" }}>
               <FaRegCommentAlt color='white' style={{ fontWeight: "bolder", fontSize: "18px" }} />
             </div>
 
-            <div  className='media' style={{ }}>
-            <Text fontWeight={'bolder'} color={'white'}>Comments</Text>
+            <div className='media' style={{}}>
+              <Text fontWeight={'bolder'} color={'white'}>Comments</Text>
             </div>
           </div>
 
-          <div  className='media diamonds' >
+          <div className='media diamonds' >
 
             <div className='diamondAnd3dots' >
               <SlDiamond color='white' fontSize={'25px'} />
             </div>
 
             <div className='diamondAnd3dots' >
-              <BsThreeDots  color='white'  fontSize={'25px'}/>
+              <BsThreeDots color='white' fontSize={'25px'} />
             </div>
 
           </div>
@@ -103,7 +135,7 @@ export const SinglePage = () => {
 
           {/* user nanes and tites */}
 
-          <div style={{  marginLeft: "10px" }}>
+          <div style={{ marginLeft: "10px" }}>
             <div>
               <Stack spacing={3}>
                 <Text fontSize='2xl' color={'white'} fontWeight={'bolder'}>Danghost: Bus Stop</Text>
@@ -122,7 +154,7 @@ export const SinglePage = () => {
 
 
       {/* Viewa and comment */}
-      <div className='media' style={{ marginTop: "20px"}}>
+      <div className='media' style={{ marginTop: "20px" }}>
 
         <div className='media'>
 
@@ -156,6 +188,43 @@ export const SinglePage = () => {
         </div>
 
 
+      </div>
+
+
+      <div style={{marginTop: "10px" , marginBottom: "15px"}}>
+        <div style={{ textAlign: "left" , color: "white", marginBottom: "10px"}}>
+          <Text>Comments: {userData.comments.length}</Text>
+        </div>
+
+        <div style={{ display: "flex" }}>
+
+          <div>
+            <SlUser fontSize={'25px'} color='white' />
+          </div>
+
+          <div style={{ width: "100%", marginLeft: "10px" }}>
+            <Textarea
+            onChange={()=>{setShowCommentSubmitBtn(true)}}
+              placeholder='Add a new Comment'
+              size='sm'
+              style={{ backgroundColor: "white" }}
+
+            />
+          </div>
+        </div>
+      </div>
+
+      <div className='commentSubmitBtn' style={{ textAlign: "right" }}>
+        {
+          showCommentSubmitBtn && <div> <Button onClick={commentBtnHandler} colorScheme='teal' size='sm' mr={'15px'}>
+          Comment
+        </Button>
+
+        <Button onClick={cancelBtnHandler} colorScheme='teal' size='sm'>
+          Cancel
+        </Button> </div>
+
+        }
       </div>
 
 
@@ -234,6 +303,12 @@ background-color: #161a1f;
   /* border: 2px solid white; */
   justify-content: space-between;
 }
+
+.commentSubmitBtn{
+  text-align: right;
+}
+
+
 
     
 `
