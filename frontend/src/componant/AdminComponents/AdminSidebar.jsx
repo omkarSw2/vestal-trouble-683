@@ -26,7 +26,7 @@ const AdminSidebar = ({openSidebarToggle, OpenSidebar}) => {
         </li>
         
         <li className='sidebar-list-item'>
-            <a href="">
+            <a href="/allusers">
                 <BsPeopleFill className='icon'/> Users
             </a>
         </li>
