@@ -5,11 +5,11 @@ const allowedRoles = ["Admin", "User"];
 
 const userSchema = mongoose.Schema(
   {
-    firstname: { type: String, required: true },
-    lastname: { type: String, required: true },
+    first_Name: { type: String, required: true },
+    last_Name: { type: String, required: true },
     email: { type: String, unique: true, required: true },
     pass: { type: String, required: true },
-    phone: { type: String, required: true },
+    phone_Number: { type: String, required: true },
     date_of_birth: { type: Date, required: true },
     token: {
       type: String,
@@ -22,12 +22,12 @@ const userSchema = mongoose.Schema(
     gender: {
       type: String,
       enum: allowedGenders,
-      required: true,
+      // required: true,
     },
     account_Status: {
       type: String,
       enum: allowedStatuses,
-      required: true,
+      default: "Active",
     },
     last_Login: {
       type: Date,

@@ -18,6 +18,9 @@ import { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { BeatLoader } from "react-spinners";
+import { useNavigate, useParams } from "react-router-dom";
+import { ResetPass } from "../redux/UserAuth/Action";
+import { useDispatch } from "react-redux";
 
 const validationSchema = Yup.object().shape({
   // setting password with all needed charecters and leters
@@ -57,7 +60,11 @@ const validationSchema = Yup.object().shape({
 
 export default function ResetPassword() {
   const [isLoading, setIsLoading] = useState(false);
+  const { token } = useParams();
   const toast = useToast();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  // console.log("token form reset pass", token);
 
   const formik = useFormik({
     initialValues: {
@@ -69,20 +76,29 @@ export default function ResetPassword() {
       setIsLoading(true);
 
       try {
-        await new Promise((resolve) => setTimeout(resolve, 2000));
-
-        // Assuming the login is successful
-        console.log(values);
-
-        // Display a success toast or perform other actions
-        toast({
-          title: "Password Reset Successful",
-          description: "Your password has been reset successfully.",
-          status: "success",
-          position: "top",
-          duration: 5000,
-          isClosable: true,
-        });
+        await dispatch(ResetPass({ token: token, value: values }))
+          .then((data) => {
+            // console.log("Data from Login .then", data.message);
+            navigate("/login", { replace: true });
+            toast({
+              title: "Password Reset Successful",
+              description: "Your password has been reset successfully.",
+              status: "success",
+              position: "top",
+              duration: 5000,
+              isClosable: true,
+            });
+          })
+          .catch((err) => {
+            toast({
+              title: "Login Error",
+              description: `${err.message} .`,
+              status: "error",
+              position: "top",
+              duration: 5000,
+              isClosable: true,
+            });
+          });
 
         resetForm();
       } catch (error) {
