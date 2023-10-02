@@ -1,4 +1,4 @@
-import { Icon, SearchIcon } from "@chakra-ui/icons";
+import { AddIcon, Icon, SearchIcon } from "@chakra-ui/icons";
 import {
   Box,
   Flex,
@@ -157,7 +157,24 @@ export default function Navbar() {
               </AlertDialogFooter>
             </AlertDialogContent>
           </AlertDialog>
+
           {/* alert Box code end */}
+          <Button
+            bgGradient="linear(to-r, green.100, green.500)"
+            transition={{
+              background: {
+                duration: "2s",
+                delay: "0.5s",
+                timingFunction: "ease",
+              },
+            }}
+            _hover={{
+              bgGradient: "linear(to-r, green.500, green.100, green.100)",
+            }}
+            leftIcon={<AddIcon />}>
+            Submit
+          </Button>
+
           <Link to={"/login"}>
             <Button
               size={"sm"}
@@ -174,10 +191,10 @@ export default function Navbar() {
               fontSize={"xs"}
               fontWeight={600}
               color={"white"}
-              bg={"pink.400"}
+              bg={"green.500"}
               href={"#"}
               _hover={{
-                bg: "pink.300",
+                bg: "green.600",
               }}>
               Sign Up
             </Button>
