@@ -35,6 +35,22 @@ try {
       res.status(400).json({ error: error });
     }
 })
+
+// search
+postRouter.get("/search", async (req, res) => {
+  try {
+    // Get the search query from the request query parameters
+    const { query } = req.query;
+
+    // Search for posts by title
+    const postsByTitle = await PostModel.find({ title: { $regex: query, $options: "i" } });
+
+    return res.status(200).json({ results: postsByTitle });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: "Server error" });
+  }
+});
 // / GET /api/posts/:postId: Retrieve a specific post by ID.
 postRouter.get("/:postId",async(req,res)=>{
     const postId=req.params.postId
