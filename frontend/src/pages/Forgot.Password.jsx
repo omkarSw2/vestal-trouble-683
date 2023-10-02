@@ -142,10 +142,10 @@ export default function ForgotPasswordForm() {
               isLoading={isLoading}
               spinner={<BeatLoader size={8} color="white" />}
               onClick={formik.handleSubmit}
-              bg={"blue.400"}
-              color={"white"}
+              bgGradient="linear(to-r, green.100, green.500)"
               _hover={{
-                bg: "blue.500",
+                bgGradient: "linear(to-r, green.500, green.100, green.100)",
+                transition: "background 0.9s ease-in-out 0.9s",
               }}>
               Request Reset
             </Button>

@@ -2,11 +2,9 @@ import { AddIcon, Icon, SearchIcon } from "@chakra-ui/icons";
 import {
   Box,
   Flex,
-  Text,
   Button,
   Stack,
   useColorModeValue,
-  useBreakpointValue,
   Input,
   InputGroup,
   InputRightElement,
@@ -32,12 +30,14 @@ import { Link } from "react-router-dom";
 import { FiLogOut } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
 import { Logout } from "../redux/UserAuth/Action";
+import logo from "../Assets/images/logo.svg";
+import logo1 from "../Assets/images/logo1.svg";
 
 export default function Navbar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const data = useSelector((store) => store.authReducer);
   const dispatch = useDispatch();
-//   console.log("data from navbar", data);
+  //   console.log("data from navbar", data);
   const handleLogout = () => {
     onOpen();
   };
@@ -59,18 +59,14 @@ export default function Navbar() {
         borderColor={useColorModeValue("gray.200", "gray.900")}
         align={"center"}>
         <Flex flex={{ base: 1 }} justify={{ base: "start", md: "start" }}>
-          <Link to="/">
-            <Text
-              textAlign={useBreakpointValue({
-                base: "right",
-                md: "left",
-              })}
-              fontFamily={"heading"}
-              color={useColorModeValue("gray.800", "white")}>
-              Logo
-            </Text>
-          </Link>
+          <Flex alignItems="center" direction="row">
+            <Link to="/" style={{ display: "flex", alignItems: "center" }}>
+              <img src={logo1} alt="Omkar" width={"10%"} />
+              <img src={logo} alt="Omkar" width={"50%"} />
+            </Link>
+          </Flex>
         </Flex>
+
         <Flex>
           <InputGroup display={{ base: "none", sm: "inline-flex" }}>
             <Input
@@ -169,13 +165,6 @@ export default function Navbar() {
 
               <Button
                 bgGradient="linear(to-r, green.100, green.500)"
-                transition={{
-                  background: {
-                    duration: "2s",
-                    delay: "0.5s",
-                    timingFunction: "ease",
-                  },
-                }}
                 _hover={{
                   bgGradient: "linear(to-r, green.500, green.100, green.100)",
                 }}
@@ -202,8 +191,7 @@ export default function Navbar() {
                   fontSize={"xs"}
                   fontWeight={600}
                   color={"white"}
-                  bg={"green.500"}
-                  href={"#"}
+                  bg={"green.400"}
                   _hover={{
                     bg: "green.600",
                   }}>

@@ -151,7 +151,9 @@ export default function LoginPage() {
             direction={{ base: "column", sm: "row" }}
             align={"start"}
             justify={"space-between"}>
-            <Checkbox bg={"white.100"}>Remember me</Checkbox>
+            <Checkbox bg={"white.100"} defaultChecked>
+              Remember me
+            </Checkbox>
             <Link to={"/login/forgotpass"}>
               <Text color={"blue.500"}>Forgot password?</Text>
             </Link>
@@ -161,7 +163,10 @@ export default function LoginPage() {
               isLoading={isLoading}
               spinner={<BeatLoader size={8} color="white" />}
               onClick={formik.handleSubmit}
-              colorScheme={"blue"}
+              bgGradient="linear(to-r, green.100, green.500)"
+              _hover={{
+                bgGradient: "linear(to-r, green.500, green.100, green.100)",
+              }}
               variant={"solid"}
               size={{ base: "sm", sm: "sm", md: "md" }}
               type="submit" // Important for triggering form submission

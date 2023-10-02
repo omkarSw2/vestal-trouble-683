@@ -12,14 +12,25 @@ import {
   IconButton,
   useColorModeValue,
   Image,
+  Flex,
 } from "@chakra-ui/react";
 
 import { FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
 import { BiMailSend } from "react-icons/bi";
-import ArtVista from "../Assets/images/ArtVista.png";
+
+import { Link } from "react-router-dom";
+import logo from "../Assets/images/logo.svg";
+import logo1 from "../Assets/images/logo1.svg";
 
 const Logo = (props) => {
-  return <Image src={ArtVista} alt="Logo" width={"30%"} />;
+  return (
+    <Flex alignItems="center" direction="row">
+      <Link to="/" style={{ display: "flex", alignItems: "center" }}>
+        <Image src={logo1} alt="Omkar" width={"10%"} />
+        <Image src={logo} alt="Omkar" width={"50%"} />
+      </Link>
+    </Flex>
+  );
 };
 
 const SocialButton = ({ children, label, href }) => {
@@ -66,7 +77,7 @@ export default function Footer() {
             <Box>
               <Logo color={useColorModeValue("gray.700", "white")} />
             </Box>
-            <Text fontSize={"sm"}>© 2023 ArtVista. All rights reserved</Text>
+            <Text fontSize={"sm"}>© 2023 ArtDeviant. All rights reserved</Text>
             <Stack direction={"row"} spacing={6}>
               <SocialButton label={"Twitter"}>
                 <FaTwitter />
