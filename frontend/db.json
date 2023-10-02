@@ -1,0 +1,81 @@
+{
+    "userData" : [
+    {
+      "id":1,
+      "first_Name": "Alice",
+      "last_Name": "Johnson",
+      "email": "alice@example.com",
+      "pass": "securePass123",
+      "phone_Number": "555-123-4567",
+      "date_of_birth":"new Date(`1992-03-18`)",
+      "token": "token123",
+      "profile_Picture": "profile1.jpg",
+      "gender": "Female",
+      "account_Status": "Active",
+      "last_Login": "new Date(`2023-09-28T08:45:00Z`)",
+      "role": "User"
+    },
+    {
+      "id":2,
+      "first_Name": "Bob",
+      "last_Name": "Smith",
+      "email": "bob@example.com",
+      "pass": "password456",
+      "phone_Number": "555-987-6543",
+      "date_of_birth": "new Date(`1988-07-22`)",
+      "token": "token456",
+      "profile_Picture": "profile2.jpg",
+      "gender": "Male",
+      "account_Status": "Active",
+      "last_Login": "new Date(`2023-09-27T16:20:00Z`)",
+      "role": "User"
+    },
+    {
+      "id":3,
+      "first_Name": "Eva",
+      "last_Name": "Brown",
+      "email": "eva@example.com",
+      "pass": "eva1234",
+      "phone_Number": "555-555-5555",
+      "date_of_birth": "new Date(1995-01-10)",
+      "token": "token789",
+      "profile_Picture": "profile3.jpg",
+      "gender": "Female",
+      "account_Status": "Suspended",
+      "last_Login": "new Date(2023-09-26T10:10:00Z)",
+      "role": "User"
+    },
+    {
+      "id":4,
+      "first_Name": "David",
+      "last_Name": "Wilson",
+      "email": "david@example.com",
+      "pass": "davidPass",
+      "phone_Number": "555-789-1234",
+      "date_of_birth": "new Date(1990-09-05)",
+      "token": "token101",
+      "profile_Picture": "profile4.jpg",
+      "gender": "Male",
+      "account_Status": "Active",
+      "last_Login": "new Date(2023-09-25T12:55:00Z)",
+      "role": "User"
+    },
+    {
+      "id":5,
+      "first_Name": "Grace",
+      "last_Name": "Taylor",
+      "email": "grace@example.com",
+      "pass": "graceSecure",
+      "phone_Number": "555-234-5678",
+      "date_of_birth": "new Date(1987-12-15)",
+      "token": "token202",
+      "profile_Picture": "profile5.jpg",
+      "gender": "Female",
+      "account_Status": "Suspended",
+      "last_Login": "new Date(`2023-09-24T18:30:00Z`)",
+      "role": "User"
+    }
+  ]
+
+}
+
