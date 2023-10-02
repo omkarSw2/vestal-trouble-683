@@ -22,12 +22,12 @@ const userSchema = mongoose.Schema(
     gender: {
       type: String,
       enum: allowedGenders,
-      required: true,
+      // required: true,
     },
     account_Status: {
       type: String,
       enum: allowedStatuses,
-      required: true,
+      default: "Active",
     },
     last_Login: {
       type: Date,

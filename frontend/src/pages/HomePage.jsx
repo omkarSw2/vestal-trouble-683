@@ -1,10 +1,7 @@
 import React, { useEffect } from 'react'
 import { CardComponent } from '../componant/CardComponent'
 import styled from "styled-components"
-import { Avatar, Wrap, WrapItem } from '@chakra-ui/react'
-import { GrTip } from "react-icons/gr";
-import { AiOutlineStar } from "react-icons/ai";
-import { FaRegCommentAlt } from "react-icons/fa";
+
 
 
 export const HomePage = () => {
