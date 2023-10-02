@@ -18,6 +18,9 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useState } from "react";
 import { BeatLoader } from "react-spinners";
+import { useDispatch } from "react-redux";
+
+import { forgotLink } from "../redux/UserAuth/Action";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string()
@@ -32,6 +35,8 @@ const initialValues = {
 export default function ForgotPasswordForm() {
   const [isLoading, setIsLoading] = useState(false);
   const toast = useToast();
+  const dispatch = useDispatch();
+  // const navigate = useNavigate();
   const formik = useFormik({
     initialValues,
     validationSchema,
@@ -39,20 +44,34 @@ export default function ForgotPasswordForm() {
       setIsLoading(true); // Set loading to true during form submission
 
       try {
-        await new Promise((resolve) => setTimeout(resolve, 2000));
+        await dispatch(forgotLink(values))
+          .then((data) => {
+            // console.log("Data from Login .then", data.message);
+            // navigate("/login/resetPassword", { replace: true });
+            toast({
+              title: "Reset link sent",
+              description: `We sent a reset link to ${data.message}.`,
+              status: "info",
+              position: "top",
+              duration: 10000,
+              isClosable: true,
+            });
+          })
+          .catch((err) => {
+            toast({
+              title: "Login Error",
+              description: `${err.message} .`,
+              status: "error",
+              position: "top",
+              duration: 5000,
+              isClosable: true,
+            });
+          });
 
         // Assuming the login is successful
-        console.log(values);
+        // console.log(values);
 
         // Display a success toast or perform other actions
-        toast({
-          title: "Reset link sent",
-          description: `We sent a reset link to ${values.email}.`,
-          status: "info",
-          position: "top",
-          duration: 5000,
-          isClosable: true,
-        });
 
         resetForm();
       } catch (error) {

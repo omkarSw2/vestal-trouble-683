@@ -86,7 +86,7 @@ adminRouter.get('/users', authAdmin, async (req, res) => {
 
   // delete the post
 
-  adminRouter.delete('/admin/delete-post/:postId', async (req, res) => {
+  adminRouter.delete('/delete-post/:postId', async (req, res) => {
     try {
       const postId = req.params.postId;
   

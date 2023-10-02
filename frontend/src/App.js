@@ -2,21 +2,20 @@ import "./App.css";
 import MainRoute from "./Auth/MainRoute";
 
 import Footer from "./componant/Footer";
-import { Try } from "./componant/Try";
 
-
-import { HomePage } from "./pages/HomePage";
+import Navbar from "./componant/Navbar";
 
 function App() {
   return (
-    <div className="App" style={{backgroundColor: "black"}}>
+
+
+  
+
+    <div className="App">
+      <Navbar />
       <MainRoute />
+      <Footer />
 
-      {/* <HomePage /> */}
-   
-
-      {/* <Footer /> */}
-      {/* <Try /> */}
     </div>
   );
 }
