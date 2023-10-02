@@ -13,6 +13,7 @@ const { adminRouter } = require("./routes/adminroutes");
 const {UploadModel} = require('./model/uploadModel')
 const {uploadRoute} = require('./routes/UpladRoutes')
 
+
 const app = express();
 app.use(express.json());
 app.use(cors());
