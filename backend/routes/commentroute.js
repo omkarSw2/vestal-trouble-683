@@ -18,7 +18,11 @@ commentRouter.get("/:postId",async(req,res)=>{
         }
     
         // Find comments associated with the post
-        const comments = await CommentModel.find({ postId: postId });
+        const comments = await CommentModel.find({ postId: postId }).populate({
+              path: 'userId',
+              select: 'firstname',
+            
+          });
     
         res.status(200).json(comments);
       } catch (error) {

@@ -12,6 +12,12 @@ postRouter.get("/",async(req,res)=>{
 try {
     const posts = await PostModel.find().populate({
         path: 'userId',
+      }).populate({
+        path: 'commentId',
+        populate: {
+          path: 'userId', // Populate the userId field within each comment
+          select: 'firstname', // Select the 'username' field from the user data
+        },
       });
   
       const postsWithComments = posts.map((post) => {
@@ -33,7 +39,15 @@ try {
 postRouter.get("/:postId",async(req,res)=>{
     const postId=req.params.postId
     try {
-        const post=await PostModel.findOne({_id:postId})
+        const post = await PostModel.findOne({ _id: postId }).populate({
+            path: 'userId',
+          }).populate({
+            path: 'commentId',
+            populate: {
+              path: 'userId',
+              select: 'firstname',
+            },
+          });
         if(!post){
             return res.status(400).json({msg:"There is no  post with this id"})
         }
@@ -44,17 +58,29 @@ postRouter.get("/:postId",async(req,res)=>{
 })
 
 // POST /api/posts: Create a new post (requires authentication).
-postRouter.post("/create",auth,async(req,res)=>{
-    const payload = req.body;
-  try {
-   
-    const post = new PostModel(payload);
-    await post.save();
-    res.status(200).json({ msg: "post is cretaed" });
-  } catch (error) {
-    res.status(400).json({ error: error });
-  }
-})
+postRouter.post("/create", auth, async (req, res) => {
+    try {
+      
+      const userId = req.user._id; // Assuming you have the user's _id in req.user
+      const { postimage, title } = req.body;
+  
+      // Create a new post object
+      const newPost = new PostModel({
+        postimage,
+        userId,
+        title,
+        commentId: [], 
+      });
+  
+      // Save the new post to the database
+      await newPost.save();
+  
+      res.status(201).json({ msg: "Post created" });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Server Error" });
+    }
+  });
 
 // PUT /api/posts/:postId: Update a post (requires authentication).
 postRouter.patch("/update/:postId",auth,async(req,res)=>{

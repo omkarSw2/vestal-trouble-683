@@ -9,7 +9,7 @@ const postSchema = mongoose.Schema({
     ref: 'user', // This should match the model name 'user'
     required: true,
   },
-  commentId: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Comment' }],
+  commentId: [{ type: mongoose.Schema.Types.ObjectId, ref: 'comment' }],
   title:{type:String,required:true},
   
 }, {
