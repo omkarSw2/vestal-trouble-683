@@ -8,6 +8,8 @@ const { auth } = require("../middleware/auth.middleware");
 
 const postRouter=express.Router()
 
+
+// post swagger
 postRouter.get("/",async(req,res)=>{
 try {
     const posts = await PostModel.find().populate({
@@ -35,6 +37,26 @@ try {
       res.status(400).json({ error: error });
     }
 })
+
+
+
+// search
+postRouter.get("/search", async (req, res) => {
+  try {
+    // Get the search query from the request query parameters
+    const { query } = req.query;
+
+    // Search for posts by title
+    const postsByTitle = await PostModel.find({ title: { $regex: query, $options: "i" } });
+
+    return res.status(200).json({ results: postsByTitle });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: "Server error" });
+  }
+});
+
+
 // / GET /api/posts/:postId: Retrieve a specific post by ID.
 postRouter.get("/:postId",async(req,res)=>{
     const postId=req.params.postId
@@ -56,6 +78,7 @@ postRouter.get("/:postId",async(req,res)=>{
         res.status(400).json({error:error})
     }
 })
+
 
 // POST /api/posts: Create a new post (requires authentication).
 postRouter.post("/create", auth, async (req, res) => {
@@ -82,6 +105,8 @@ postRouter.post("/create", auth, async (req, res) => {
     }
   });
 
+
+
 // PUT /api/posts/:postId: Update a post (requires authentication).
 postRouter.patch("/update/:postId",auth,async(req,res)=>{
     console.log("hh")
@@ -92,7 +117,7 @@ postRouter.patch("/update/:postId",auth,async(req,res)=>{
        if(!post){
         return res.status(404).json({msg:"post not found"})
        }
-       if(post.username!==req.body.username){
+       if(post.userId!==req.user._id){
         return res.status(403).json({msg:"you are not authorised"})
        }
        if(title){

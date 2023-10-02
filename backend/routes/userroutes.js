@@ -40,6 +40,9 @@ userRouter.get("/usercount", async (req, res) => {
   }
 });
 
+
+
+
 // ! Register User
 userRouter.post("/register", async (req, res) => {
   const { email, pass, ...restOfRequestBody } = req.body;
@@ -104,6 +107,7 @@ userRouter.post("/register", async (req, res) => {
     res.status(500).send({ error: error.message, message: "Try-catch error" });
   }
 });
+
 // !Login User
 userRouter.post("/login", async (req, res) => {
   const { email, pass } = req.body;
@@ -161,6 +165,10 @@ userRouter.post("/login", async (req, res) => {
     });
   }
 });
+
+
+
+
 
 // !Forgot Users Pasword
 userRouter.post("/forgotpass", async (req, res) => {
