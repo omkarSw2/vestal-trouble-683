@@ -1,18 +1,23 @@
 import React from 'react'
-import { Avatar, Box, Button, ButtonGroup, Card, CardFooter, CardHeader, Divider, Flex, Heading, IconButton, Text } from '@chakra-ui/react'
-import { BsThreeDotsVertical } from 'react-icons/bs'
+import { Avatar, Box, Button, ButtonGroup, Card, CardBody, CardFooter, CardHeader, Divider, Flex, Heading, IconButton, Stack, Text } from '@chakra-ui/react'
+import { BsGenderFemale, BsGenderMale, BsThreeDotsVertical } from 'react-icons/bs'
 
-const AdminUserCard = () => {
+const AdminUserCard = ({first_Name,last_Name,email,profile_Picture,gender,last_Login,onBlockUser,id}) => {
+  const handleBlockButtonClick = () => {
+    
+    onBlockUser(id);
+  };
+  const formattedDate = last_Login.toLocaleString()
   return (
-    <Card maxW='md'>
+    <Card maxW='md' marginBottom={0}>
          <CardHeader>
     <Flex spacing='4'>
       <Flex flex='1' gap='4' alignItems='center' flexWrap='wrap'>
-        <Avatar name='Segun Adebayo' src='https://bit.ly/sage-adebayo' />
+        <Avatar name={first_Name+" "+last_Name} src={profile_Picture} />
 
         <Box>
-          <Heading size='sm'>Segun Adebayo</Heading>
-          <Text>email address</Text>
+          <Heading size='sm'>{first_Name+" "+last_Name}</Heading>
+          <Text>{email}</Text>
         </Box>
       </Flex>
       <IconButton
@@ -23,30 +28,25 @@ const AdminUserCard = () => {
       />
     </Flex>
   </CardHeader>
-  {/*<CardBody>
-    <Stack mt='6' spacing='3'>
-      <Heading size='md'>Living room Sofa</Heading>
-      <Text>
-        This sofa is perfect for modern tropical spaces, baroque inspired
-        spaces, earthy toned spaces and for people who love a chic design with a
-        sprinkle of vintage design.
-      </Text>
-      <Text color='blue.600' fontSize='2xl'>
-        $450
+  <CardBody>
+    <Stack mt='3' spacing='1'>
+      <Heading size=''>{formattedDate}</Heading>
+      <Text fontSize={"30px"} color={"#e75480"}>
+       {gender=="Female"?<BsGenderFemale/>:<BsGenderMale/>}
       </Text>
     </Stack>
-  </CardBody>*/}
+  </CardBody>
   <Divider />
-  <CardFooter>
+  <CardBody>
     <ButtonGroup spacing='2'>
-      <Button variant='solid' colorScheme='blue'>
+      <Button variant='solid' colorScheme='blue' onClick={handleBlockButtonClick} >
         BlockUser
       </Button>
       <Button variant='ghost' colorScheme='blue'>
         More Info
       </Button>
     </ButtonGroup>
-  </CardFooter>
+  </CardBody>
 </Card>
   )
 }

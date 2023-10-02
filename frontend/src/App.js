@@ -4,6 +4,7 @@ import MainRoute from "./Auth/MainRoute";
 import Footer from "./componant/Footer";
 
 import Navbar from "./componant/Navbar";
+import Admin from "./pages/Admin";
 
 function App() {
   return (
@@ -11,9 +12,10 @@ function App() {
   
 
     <div className="App">
-      <Navbar />
+      {/* <Navbar />
       <MainRoute />
-      <Footer />
+      <Footer /> */}
+      <Admin/>
 
     </div>
   );
