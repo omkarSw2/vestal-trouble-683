@@ -7,10 +7,15 @@ import Navbar from "./componant/Navbar";
 
 function App() {
   return (
-    <div className="App" style={{backgroundColor: "black"}}>
+
+
+  
+
+    <div className="App">
       <Navbar />
       <MainRoute />
       <Footer />
+
     </div>
   );
 }
