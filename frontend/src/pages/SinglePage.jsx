@@ -64,8 +64,9 @@ export const SinglePage = () => {
   return (
     <DIV isHeightGreater={isHeightGreater} toggleFullScreen={toggleFullScreen}>
 
-      {/* <div id='photos' > */}
-      {/* <img onLoad={handleImageLoad}  src={data.image} alt='im' style={{width: "100%"}} /> */}
+    
+     
+      
       <div className='imageDiv'>
         <div id='photos' className={`image-viewer ${fullScreen ? 'full-screen' : ''}`}>
           <img src={data.image} alt="Full Screen" onClick={toggleFullScreen} onLoad={handleImageLoad} />
@@ -228,7 +229,7 @@ export const SinglePage = () => {
       </div>
 
 
-      {/* </div> */}
+    
 
     </DIV>
   )

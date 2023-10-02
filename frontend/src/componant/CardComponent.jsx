@@ -3,7 +3,7 @@ import React from 'react'
 import styled from "styled-components"
 import { AiOutlineStar } from "react-icons/ai";
 import { FaRegCommentAlt } from "react-icons/fa";
-import { Link, Navigate, useNavigate, useSearchParams } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 
 export const CardComponent = ({ image, user, userImage, comments, favourite, id }) => {
   
