@@ -318,7 +318,10 @@ export default function SignupPage() {
               isLoading={isLoading}
               spinner={<BeatLoader size={8} color="white" />}
               onClick={formik.handleSubmit}
-              colorScheme={"blue"}
+              bgGradient="linear(to-r, green.100, green.500)"
+              _hover={{
+                bgGradient: "linear(to-r, green.500, green.100, green.100)",
+              }}
               variant={"solid"}
               size={{ base: "sm", md: "md" }}
               type="submit" // Important for triggering form submission

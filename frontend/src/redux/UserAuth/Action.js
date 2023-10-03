@@ -3,6 +3,7 @@ import {
   FAILURE,
   FORGOTPASS_SUCCESS,
   LOGIN_SUCCESS,
+  LOGOUT,
   REGISTER_SUCCESS,
   REQUEST,
   RESETPASS_SUCCESS,
@@ -88,5 +89,23 @@ const ResetPass = (data) => async (dispatch) => {
     // Uncomment this line to re-throw the error for further handling
   }
 };
+const Logout = (data) => async (dispatch) => {
+  dispatch({ type: REQUEST });
 
-export { LoginUser, RegisterUser, forgotLink, ResetPass };
+  try {
+    // const response = await axios.post(
+    //   `http://localhost:8080/users/reset_password/${data.token}`,
+    //   data.value
+    // );
+
+    dispatch({ type: LOGOUT });
+    // console.log(response.data);
+  } catch (error) {
+    dispatch({ type: FAILURE });
+
+    console.log(error);
+    throw error;
+  }
+};
+
+export { LoginUser, RegisterUser, forgotLink, ResetPass, Logout };
