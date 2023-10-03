@@ -82,28 +82,36 @@ postRouter.get("/:postId",async(req,res)=>{
 
 // POST /api/posts: Create a new post (requires authentication).
 postRouter.post("/create", auth, async (req, res) => {
-    try {
-      
-      const userId = req.user._id; // Assuming you have the user's _id in req.user
-      const { postimage, title } = req.body;
-  
-      // Create a new post object
-      const newPost = new PostModel({
-        postimage,
-        userId,
-        title,
-        commentId: [], 
-      });
-  
-      // Save the new post to the database
-      await newPost.save();
-  
-      res.status(201).json({ msg: "Post created" });
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ message: "Server Error" });
+  try {
+    const userId = req.user._id;
+    const { title } = req.body;
+
+    if (!req.file) {
+      return res.status(400).json({ message: "Please upload a file" });
     }
-  });
+
+    const file = req.file;
+    const destination = path.join(__dirname, '..', 'uploads', file.originalname);
+    fs.renameSync(file.path, destination);
+
+    const fileUrl = `${req.protocol}://${req.get('host')}/uploads/${file.filename}`;
+
+    const newPost = new PostModel({
+      postimage: fileUrl, // Set the postimage to the URL of the uploaded file
+      userId,
+      title,
+      commentId: [],
+    });
+
+    await newPost.save();
+
+    res.status(201).json({ msg: "Post created" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server Error" });
+  }
+});
+
 
 
 
