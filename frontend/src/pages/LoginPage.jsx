@@ -67,6 +67,7 @@ export default function LoginPage() {
             });
           })
           .catch((err) => {
+            console.log(err);
             toast({
               title: "Login Error",
               description: `${err.message} .`,

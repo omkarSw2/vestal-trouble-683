@@ -40,9 +40,6 @@ userRouter.get("/usercount", async (req, res) => {
   }
 });
 
-
-
-
 // ! Register User
 userRouter.post("/register", async (req, res) => {
   const { email, pass, ...restOfRequestBody } = req.body;
@@ -68,30 +65,6 @@ userRouter.post("/register", async (req, res) => {
           await user.save();
           const { pass, ...data } = user.toObject();
 
-          return res.status(201).send({ message: "New user is created", data });
-
-          const token = jwt.sign(
-            {
-              email: data.email,
-              userID: data._id,
-              userName: data.first_Name,
-            },
-            process.env.TOKEN_KEY,
-            {
-              expiresIn: "2 days",
-            }
-          );
-          const rtoken = jwt.sign(
-            {
-              email: data.email,
-              userID: data._id,
-              userName: data.first_Name,
-            },
-            process.env.REFRESH_TOKEN_KEY,
-            {
-              expiresIn: "7d",
-            }
-          );
           return res
             .status(201)
             .send({ message: "New user is created", data, token, rtoken });
@@ -165,10 +138,6 @@ userRouter.post("/login", async (req, res) => {
     });
   }
 });
-
-
-
-
 
 // !Forgot Users Pasword
 userRouter.post("/forgotpass", async (req, res) => {
