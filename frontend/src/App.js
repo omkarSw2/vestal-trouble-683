@@ -12,10 +12,10 @@ function App() {
   
 
     <div className="App">
-      {/* <Navbar />
+        <Navbar />
       <MainRoute />
-      <Footer /> */}
-      <Admin/>
+      <Footer />  
+      {/* <Admin/> */}
 
     </div>
   );
