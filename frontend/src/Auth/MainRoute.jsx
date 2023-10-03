@@ -7,10 +7,12 @@ import ForgotPasswordForm from "../pages/Forgot.Password";
 import ResetPassword from "../pages/Reset.Password";
 import { SinglePage } from "../pages/SinglePage";
 import { HomePage } from "../pages/HomePage";
+import Admin from "./pages/Admin";
 
 const MainRoute = () => {
   return (
     <Routes>
+      <Route path="/admin" element={<Admin />} />
       <Route path="/login" element={<LoginPage />} />
 
       <Route path="/login/forgotpass" element={<ForgotPasswordForm />} />
