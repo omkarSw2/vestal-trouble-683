@@ -5,16 +5,16 @@ import { AiOutlineStar } from "react-icons/ai";
 import { FaRegCommentAlt } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 
-export const CardComponent = ({ image, user, userImage, comments, favourite, id }) => {
+export const CardComponent = ({ postimage, userId, comments, _id, title }) => {
   return (
-    <Link to={`/singleProduct/${id}`}>
+    <Link to={`/singleProduct/${_id}`}>
     <div className='container'>
      
-      <img className='contImage' src={image} alt='im' />
+      <img className='contImage' src={postimage} alt={`${userId.first_Name}`} />
       
 
       <div className='bottom-left-user'>
-        {user}
+      {/* {title} */}
       </div>
 
       <div className='bottom-left'>
@@ -23,15 +23,15 @@ export const CardComponent = ({ image, user, userImage, comments, favourite, id 
             <Avatar
               size='xs'
               name='Kola Tioluwani'
-              src={userImage}
-            />{' '}
+              src={""}
+            />
 
 
           </WrapItem>
         </Wrap>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginLeft: "5px" }}>
           <div>
-            user nane
+          {`${userId.first_Name}`}
           </div>
         </div>
 
@@ -42,9 +42,9 @@ export const CardComponent = ({ image, user, userImage, comments, favourite, id 
               paddingBottom: "5px",
               marginRight: "5px",
             }}>
-            {comments}
+            {/* {comments} */}
           </div>
-          <FaRegCommentAlt style={{ fontWeight: "bolder" }} />
+          {/* <FaRegCommentAlt style={{ fontWeight: "bolder" }} /> */}
         </div>
 
         <div className="star">
@@ -54,10 +54,11 @@ export const CardComponent = ({ image, user, userImage, comments, favourite, id 
               paddingBottom: "0px",
               marginRight: "5px",
             }}>
-            {favourite}
+            {/* {"gab"} */}
           </div>
-          <AiOutlineStar style={{ fontSize: "20px", fontWeight: "bolder" }} />
+          {/* <AiOutlineStar style={{ fontSize: "20px", fontWeight: "bolder" }} /> */}
         </div>
+      </div>
       </div>
     </Link>
   );
