@@ -65,9 +65,7 @@ userRouter.post("/register", async (req, res) => {
           await user.save();
           const { pass, ...data } = user.toObject();
 
-          return res
-            .status(201)
-            .send({ message: "New user is created", data, token, rtoken });
+          return res.status(201).send({ message: "New user is created", data });
         }
       });
     } else {

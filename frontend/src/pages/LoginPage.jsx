@@ -88,6 +88,7 @@ export default function LoginPage() {
     },
   });
 
+  console.log(data);
   if (data.isAuth) {
     return <Navigate to={"/"} replace={true} />;
   }
