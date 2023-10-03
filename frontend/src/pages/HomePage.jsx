@@ -1,12 +1,6 @@
 import React, { useEffect } from 'react'
 import { CardComponent } from '../componant/CardComponent'
 import styled from "styled-components"
-// import styled from "styled-components"
-// import styled from "styled-components"
-// import styled from "styled-components"
-// import styled from "styled-components"
-// import styled from "styled-components"
-// import styled from "styled-components"
 
 
 
@@ -156,7 +150,7 @@ const DIV = styled.div`
 #photos img {
   /* Just in case there are inline attributes */
   width: 100% !important;
-  height: auto !important;
+  
  
 }
 
@@ -203,6 +197,7 @@ const DIV = styled.div`
   position: relative;
   text-align: center;
   color: white;
+
 }
 
 img:hover {
