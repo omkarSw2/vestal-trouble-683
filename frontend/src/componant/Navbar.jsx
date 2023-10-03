@@ -162,15 +162,16 @@ export default function Navbar() {
               </AlertDialog>
 
               {/* alert Box code end */}
-
-              <Button
-                bgGradient="linear(to-r, green.100, green.500)"
-                _hover={{
-                  bgGradient: "linear(to-r, green.500, green.100, green.100)",
-                }}
-                leftIcon={<AddIcon />}>
-                Submit
-              </Button>
+              <Link to="/addimage">
+                <Button
+                  bgGradient="linear(to-r, green.100, green.500)"
+                  _hover={{
+                    bgGradient: "linear(to-r, green.500, green.100, green.100)",
+                  }}
+                  leftIcon={<AddIcon />}>
+                  Submit
+                </Button>
+              </Link>
             </>
           )}
           {!data.isAuth && (

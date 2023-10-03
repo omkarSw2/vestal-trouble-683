@@ -29,7 +29,7 @@ body {
     cursor: pointer;
   }
   
-  .grid-container {
+  .grid-containers {
     display: grid;
     grid-template-columns: 260px 1fr 1fr 1fr;
     grid-template-rows: 0.2fr 3fr;
@@ -196,7 +196,7 @@ body {
   /* Medium <= 992px */
     
   @media screen and (max-width: 992px) {
-    .grid-container {
+    .grid-containers {
       grid-template-columns: 1fr;
       grid-template-rows: 0.2fr 3fr;
       grid-template-areas:

@@ -1,6 +1,6 @@
-import { Avatar, Wrap, WrapItem } from '@chakra-ui/react'
-import React from 'react'
-import styled from "styled-components"
+import { Avatar, Wrap, WrapItem } from "@chakra-ui/react";
+import React from "react";
+
 import { AiOutlineStar } from "react-icons/ai";
 import { FaRegCommentAlt } from "react-icons/fa";
 import { Link } from 'react-router-dom';
@@ -34,36 +34,31 @@ export const CardComponent = ({ image, user, userImage, comments, favourite, id 
             user nane
           </div>
         </div>
-      </div>
 
-
-      <div className='bottom-comment'>
-        <div style={{ fontSize: "15px", paddingBottom: "5px", marginRight: "5px" }}>
-          {comments}
+        <div className="bottom-comment">
+          <div
+            style={{
+              fontSize: "15px",
+              paddingBottom: "5px",
+              marginRight: "5px",
+            }}>
+            {comments}
+          </div>
+          <FaRegCommentAlt style={{ fontWeight: "bolder" }} />
         </div>
-        <FaRegCommentAlt style={{ fontWeight: "bolder" }} />
 
-      </div>
-
-      <div className='star'>
-
-        <div style={{ fontSize: "15px", paddingBottom: "0px", marginRight: "5px" }}>
-          {favourite}
+        <div className="star">
+          <div
+            style={{
+              fontSize: "15px",
+              paddingBottom: "0px",
+              marginRight: "5px",
+            }}>
+            {favourite}
+          </div>
+          <AiOutlineStar style={{ fontSize: "20px", fontWeight: "bolder" }} />
         </div>
-        <AiOutlineStar style={{ fontSize: "20px", fontWeight: "bolder" }} />
-
       </div>
-
-    </div>
     </Link>
-  )
-}
-
-
-
-const DIV = styled.div`
-   
-
-
-
-`
+  );
+};
