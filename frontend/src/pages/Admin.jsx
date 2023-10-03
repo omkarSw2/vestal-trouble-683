@@ -14,7 +14,7 @@ const Admin = () => {
   }
 
   return (
-    <div className='grid-container'>
+    <div className='grid-containers'>
       <AdminHeader OpenSidebar={OpenSidebar}/>
       <AdminSidebar openSidebarToggle={openSidebarToggle} OpenSidebar={OpenSidebar}/>
       <Routes>
