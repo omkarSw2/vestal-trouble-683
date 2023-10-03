@@ -3,7 +3,8 @@ import React from "react";
 
 import { AiOutlineStar } from "react-icons/ai";
 import { FaRegCommentAlt } from "react-icons/fa";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
+
 
 export const CardComponent = ({ postimage, userId, comments, _id, title }) => {
   return (
@@ -35,13 +36,20 @@ export const CardComponent = ({ postimage, userId, comments, _id, title }) => {
           </div>
         </div>
 
-        <div className="bottom-comment">
+        <div className="bottom-left">
+          <Wrap>
+            <WrapItem>
+              <Avatar size="xs" name="Kola Tioluwani" src={userImage} />{" "}
+            </WrapItem>
+          </Wrap>
           <div
             style={{
-              fontSize: "15px",
-              paddingBottom: "5px",
-              marginRight: "5px",
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              marginLeft: "5px",
             }}>
+
             {/* {comments} */}
           </div>
           {/* <FaRegCommentAlt style={{ fontWeight: "bolder" }} /> */}
@@ -57,6 +65,8 @@ export const CardComponent = ({ postimage, userId, comments, _id, title }) => {
             {/* {"gab"} */}
           </div>
           {/* <AiOutlineStar style={{ fontSize: "20px", fontWeight: "bolder" }} /> */}
+
+          
         </div>
       </div>
       </div>

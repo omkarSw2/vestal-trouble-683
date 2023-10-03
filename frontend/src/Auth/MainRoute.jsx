@@ -9,12 +9,14 @@ import { SinglePage } from "../pages/SinglePage";
 import { HomePage } from "../pages/HomePage";
 import Admin from "../pages/Admin";
 import { Deviation } from "../componant/Deviation";
+import AdminHome from "../componant/AdminComponents/AdminHome";
+import AdminLayout from "../componant/AdminComponents/AdminLayout";
 
 
 const MainRoute = () => {
   return (
     <Routes>
-      <Route path="/admin" element={<Admin />} />
+      <Route path="/admin/*" element={<Admin />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/addimage" element={<Deviation />} />
 
@@ -23,6 +25,9 @@ const MainRoute = () => {
       <Route path="/register" element={<SignupPage />} />
       <Route path="/" element={<HomePage />} />
       <Route path="/singleProduct/:id" element={<SinglePage />} />
+
+
+     
     </Routes>
   );
 };
