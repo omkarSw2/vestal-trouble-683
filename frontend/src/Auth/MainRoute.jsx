@@ -10,6 +10,7 @@ import { HomePage } from "../pages/HomePage";
 import Admin from "../pages/Admin";
 import { Deviation } from "../componant/Deviation";
 
+
 const MainRoute = () => {
   return (
     <Routes>
