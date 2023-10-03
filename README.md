@@ -21,6 +21,37 @@ construct week Project for NEM111
 - Full-text Search
 - Database
 
+  
+## Front End
+
+### Technologies Used
+
+- HTML5
+- styled component
+- JavaScript
+- React
+- Redux
+- Chakra-UI
+- Formik and yup
+
+### Description
+
+This section describes the technologies and tools used on the front end of the project. Feel free to add any additional information about the front-end tech stack, such as libraries, frameworks, or design principles.
+
+## Back End
+
+### Technologies Used
+
+- Node.js
+- Express.js
+- MongoDB
+- multer
+
+### Description
+
+This section describes the technologies and tools used on the back end of the project. Include any relevant information about server architecture, databases, and API endpoints. You can also mention any middleware or authentication methods used.
+
+
 
 # Home Page
 ![Home](https://github.com/omkarSw2/vestal-trouble-683/assets/121368970/fc2034d6-7e9f-4b10-9e0f-4aa212ceb15f)
