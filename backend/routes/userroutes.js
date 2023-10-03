@@ -40,10 +40,13 @@ userRouter.get("/usercount", async (req, res) => {
   }
 });
 
+
+
+
 // ! Register User
 userRouter.post("/register", async (req, res) => {
   const { email, pass, ...restOfRequestBody } = req.body;
-  console.log("inside register");
+  // console.log("inside register");
   try {
     const emailexist = await UserModel.findOne({ email: email });
 
@@ -104,10 +107,11 @@ userRouter.post("/register", async (req, res) => {
     res.status(500).send({ error: error.message, message: "Try-catch error" });
   }
 });
+
 // !Login User
 userRouter.post("/login", async (req, res) => {
   const { email, pass } = req.body;
-  console.log("inside");
+  // console.log("inside");
   try {
     const emailcheck = await UserModel.findOne({ email });
     // !checking emai exist or not
@@ -161,6 +165,10 @@ userRouter.post("/login", async (req, res) => {
     });
   }
 });
+
+
+
+
 
 // !Forgot Users Pasword
 userRouter.post("/forgotpass", async (req, res) => {
