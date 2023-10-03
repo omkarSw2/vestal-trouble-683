@@ -1,13 +1,14 @@
 import React from 'react'
 import { Avatar, Box, Button, ButtonGroup, Card, CardBody, CardFooter, CardHeader, Divider, Flex, Heading, IconButton, Stack, Text } from '@chakra-ui/react'
 import { BsGenderFemale, BsGenderMale, BsThreeDotsVertical } from 'react-icons/bs'
+import { Children } from 'react';
 
-const AdminUserCard = ({first_Name,last_Name,email,profile_Picture,gender,last_Login,onBlockUser,id}) => {
+const AdminUserCard = ({first_Name,last_Name,email,profile_Picture,gender,last_Login,onBlockUser,id,children}) => {
   const handleBlockButtonClick = () => {
     
     onBlockUser(id);
   };
-  const formattedDate = last_Login.toLocaleString()
+  const formattedDate = new Date(last_Login).toLocaleString()
   return (
     <Card maxW='md' marginBottom={0}>
          <CardHeader>
@@ -40,7 +41,7 @@ const AdminUserCard = ({first_Name,last_Name,email,profile_Picture,gender,last_L
   <CardBody>
     <ButtonGroup spacing='2'>
       <Button variant='solid' colorScheme='blue' onClick={handleBlockButtonClick} >
-        BlockUser
+        {children}
       </Button>
       <Button variant='ghost' colorScheme='blue'>
         More Info

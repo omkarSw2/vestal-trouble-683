@@ -55,7 +55,7 @@ const AdminUsers = () => {
       <SimpleGrid columns={3} gap={3}>
         {getCurrentPageData().map((user, index) => (
           <Box key={index}>
-            <AdminUserCard {...user} onBlockUser={() => handleBlockUser(user.id)} />
+            <AdminUserCard {...user} onBlockUser={() => handleBlockUser(user.id)} children={"Block"} />
           </Box>
         ))}
       </SimpleGrid>

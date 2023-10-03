@@ -5,6 +5,7 @@ import AdminHome from '../componant/AdminComponents/AdminHome'
 import "../pages/Admin.css"
 import {Routes,Route} from "react-router-dom"
 import AdminUsers from '../componant/AdminComponents/AdminUsers'
+import AdminBlock from '../componant/AdminComponents/AdminBlock'
 
 const Admin = () => {
   const [openSidebarToggle, setOpenSidebarToggle] = useState(false)
@@ -14,12 +15,13 @@ const Admin = () => {
   }
 
   return (
-    <div className='grid-container'>
+    <div className='grid-containers'>
       <AdminHeader OpenSidebar={OpenSidebar}/>
       <AdminSidebar openSidebarToggle={openSidebarToggle} OpenSidebar={OpenSidebar}/>
       <Routes>
-        <Route path="/adminDashboard" element={<AdminHome />}/>
-        <Route path="/allusers" element={<AdminUsers/>}/>
+      <Route path="dashboard" element={<AdminHome />}/>
+        <Route path="Ausers" element={<AdminUsers/>}/>
+        <Route path="Busers" element={<AdminBlock/>}/>
       </Routes>
       
     </div>
