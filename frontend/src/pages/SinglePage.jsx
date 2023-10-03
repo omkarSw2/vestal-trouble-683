@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from "styled-components"
 import { AiOutlineStar } from "react-icons/ai";
 import { FaRegCommentAlt, RiVipDiamondLine } from "react-icons/fa";
@@ -8,12 +8,14 @@ import { SlUser } from "react-icons/sl";
 import { Button, Image, Stack, Textarea } from '@chakra-ui/react';
 import { Text } from '@chakra-ui/react'
 import { useParams, useSearchParams } from 'react-router-dom';
+import axios from 'axios';
 
 export const SinglePage = () => {
 
   const [isHeightGreater, setIsHeightGreater] = useState(false);
-  let { id } = useParams()
+  const { id } = useParams()
   const [fullScreen, setFullScreen] = useState(false);
+  const [data, setData] = useState({})
 
   const [showCommentSubmitBtn, setShowCommentSubmitBtn] = useState(false)
 
@@ -56,11 +58,25 @@ export const SinglePage = () => {
 
   }
 
+  useEffect(()=>{
+    axios.get(`http://localhost:8080/posts/${id}`)
+    .then((res)=>{
+      console.log(res)
+      setData(res.data.data)
+    })
+    .then((er)=>{
+      console.log(er);
+    })
 
-  const data = {
-    image: "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/ff8ef9fb-5c46-4bed-afce-d22225018708/dfphtdz-2e78f782-a6ec-4ec8-b3f9-1c4807422673.png/v1/fit/w_828,h_474,q_70,strp/paysage_bucolique_sublime_envoutant_petit_voilier_by_naltear_dfphtdz-414w-2x.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9ODk2IiwicGF0aCI6IlwvZlwvZmY4ZWY5ZmItNWM0Ni00YmVkLWFmY2UtZDIyMjI1MDE4NzA4XC9kZnBodGR6LTJlNzhmNzgyLWE2ZWMtNGVjOC1iM2Y5LTFjNDgwNzQyMjY3My5wbmciLCJ3aWR0aCI6Ijw9MTU2OCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.N8uwHDqKpADMo7AyK9bOFDOH9ZB1PfgU0efts5Ws2ow",
-    // image: "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/ff8ef9fb-5c46-4bed-afce-d22225018708/dfpk2no-aef7607c-8120-41a0-ad29-1ca7791b06a2.png/v1/fit/w_828,h_1436,q_70,strp/montagne_majestueuse_by_naltear_dfpk2no-414w-2x.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTY2NCIsInBhdGgiOiJcL2ZcL2ZmOGVmOWZiLTVjNDYtNGJlZC1hZmNlLWQyMjIyNTAxODcwOFwvZGZwazJuby1hZWY3NjA3Yy04MTIwLTQxYTAtYWQyOS0xY2E3NzkxYjA2YTIucG5nIiwid2lkdGgiOiI8PTk2MCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.CeAxlVvaqjFYCXd3cBCS1GTApuI64e6VD5XlwlbVfSM"
-  }
+  },[])
+
+
+  // const data = {
+  //   image: "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/ff8ef9fb-5c46-4bed-afce-d22225018708/dfphtdz-2e78f782-a6ec-4ec8-b3f9-1c4807422673.png/v1/fit/w_828,h_474,q_70,strp/paysage_bucolique_sublime_envoutant_petit_voilier_by_naltear_dfphtdz-414w-2x.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9ODk2IiwicGF0aCI6IlwvZlwvZmY4ZWY5ZmItNWM0Ni00YmVkLWFmY2UtZDIyMjI1MDE4NzA4XC9kZnBodGR6LTJlNzhmNzgyLWE2ZWMtNGVjOC1iM2Y5LTFjNDgwNzQyMjY3My5wbmciLCJ3aWR0aCI6Ijw9MTU2OCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.N8uwHDqKpADMo7AyK9bOFDOH9ZB1PfgU0efts5Ws2ow",
+  //   // image: "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/ff8ef9fb-5c46-4bed-afce-d22225018708/dfpk2no-aef7607c-8120-41a0-ad29-1ca7791b06a2.png/v1/fit/w_828,h_1436,q_70,strp/montagne_majestueuse_by_naltear_dfpk2no-414w-2x.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTY2NCIsInBhdGgiOiJcL2ZcL2ZmOGVmOWZiLTVjNDYtNGJlZC1hZmNlLWQyMjIyNTAxODcwOFwvZGZwazJuby1hZWY3NjA3Yy04MTIwLTQxYTAtYWQyOS0xY2E3NzkxYjA2YTIucG5nIiwid2lkdGgiOiI8PTk2MCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.CeAxlVvaqjFYCXd3cBCS1GTApuI64e6VD5XlwlbVfSM"
+  // }
+
+  console.log("data", data);
   return (
     <DIV isHeightGreater={isHeightGreater} toggleFullScreen={toggleFullScreen}>
 
@@ -69,7 +85,7 @@ export const SinglePage = () => {
       
       <div className='imageDiv'>
         <div id='photos' className={`image-viewer ${fullScreen ? 'full-screen' : ''}`}>
-          <img src={data.image} alt="Full Screen" onClick={toggleFullScreen} onLoad={handleImageLoad} />
+          <img src={data.postimage} alt="Full Screen" onClick={toggleFullScreen} onLoad={handleImageLoad} />
         </div>
       </div>
 
@@ -194,7 +210,7 @@ export const SinglePage = () => {
 
       <div style={{marginTop: "10px" , marginBottom: "15px"}}>
         <div style={{ textAlign: "left" , color: "white", marginBottom: "10px"}}>
-          <Text>Comments: {userData.comments.length}</Text>
+          <Text>Comments:</Text>
         </div>
 
         <div style={{ display: "flex" }}>
@@ -238,7 +254,7 @@ export const SinglePage = () => {
 const DIV = styled.div`
 width: 70%;
 margin: auto;
-
+background-color: #161a1f;
 
 
 .imageDiv{

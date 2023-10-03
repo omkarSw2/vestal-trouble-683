@@ -70,6 +70,7 @@ postRouter.get("/search", async (req, res) => {
 // / GET /api/posts/:postId: Retrieve a specific post by ID.
 postRouter.get("/:postId", async (req, res) => {
   const postId = req.params.postId;
+  console.log(postId, "POSTID")
   try {
     const post = await PostModel.findOne({ _id: postId })
       .populate({

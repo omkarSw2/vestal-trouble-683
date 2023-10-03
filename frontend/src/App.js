@@ -11,7 +11,10 @@ function App() {
 
 
       <Navbar />
+      <div style={{backgroundColor: "black", marginBottom: "20px", marginTop: "10px"}}>
+
       <MainRoute />
+      </div>
       <Footer />
 
 
