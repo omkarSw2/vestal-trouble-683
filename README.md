@@ -46,6 +46,7 @@ This section describes the technologies and tools used on the front end of the p
 - Express.js
 - MongoDB
 - multer
+- mongoose 
 
 ### Description
 
