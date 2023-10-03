@@ -8,9 +8,11 @@ import Navbar from "./componant/Navbar";
 function App() {
   return (
     <div className="App">
+
       <Navbar />
       <MainRoute />
       <Footer />
+
     </div>
   );
 }
