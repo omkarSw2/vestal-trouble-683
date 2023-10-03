@@ -134,6 +134,7 @@ export const HomePage = () => {
   );
 };
 
+
 const DIV = styled.div`
   #photos {
     /* Prevent vertical gaps */
@@ -153,12 +154,30 @@ const DIV = styled.div`
     height: auto !important;
   }
 
-  @media (max-width: 1200px) {
-    #photos {
-      -moz-column-count: 4;
-      -webkit-column-count: 4;
-      column-count: 4;
-    }
+#photos {
+  /* Prevent vertical gaps */
+  line-height: 0;
+   
+  -webkit-column-count: 7;
+  -webkit-column-gap:   5px;
+  -moz-column-count:    7;
+  -moz-column-gap:      5px;
+  column-count:         7;
+  column-gap:           5px;  
+}
+
+#photos img {
+  /* Just in case there are inline attributes */
+  width: 100% !important;
+  
+ 
+}
+
+@media (max-width: 1200px) {
+  #photos {
+  -moz-column-count:    4;
+  -webkit-column-count: 4;
+  column-count:         4;
   }
   @media (max-width: 1000px) {
     #photos {
@@ -191,11 +210,14 @@ const DIV = styled.div`
     display: flex;
   }
 
-  .container {
-    position: relative;
-    text-align: center;
-    color: white;
-  }
+
+.container {
+  position: relative;
+  text-align: center;
+  color: white;
+
+}
+
 
   img:hover {
     filter: blur(2px); /* Blur the image on hover */

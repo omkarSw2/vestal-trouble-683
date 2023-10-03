@@ -3,37 +3,35 @@ import React from "react";
 
 import { AiOutlineStar } from "react-icons/ai";
 import { FaRegCommentAlt } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
-export const CardComponent = ({
-  image,
-  user,
-  userImage,
-  comments,
-  favourite,
-  id,
-}) => {
+export const CardComponent = ({ image, user, userImage, comments, favourite, id }) => {
   return (
     <Link to={`/singleProduct/${id}`}>
-      <div className="container">
-        <img className="contImage" src={image} alt="im" />
+    <div className='container'>
+     
+      <img className='contImage' src={image} alt='im' />
+      
 
-        <div className="bottom-left-user">{user}</div>
+      <div className='bottom-left-user'>
+        {user}
+      </div>
 
-        <div className="bottom-left">
-          <Wrap>
-            <WrapItem>
-              <Avatar size="xs" name="Kola Tioluwani" src={userImage} />{" "}
-            </WrapItem>
-          </Wrap>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              marginLeft: "5px",
-            }}>
-            <div>user nane</div>
+      <div className='bottom-left'>
+        <Wrap>
+          <WrapItem>
+            <Avatar
+              size='xs'
+              name='Kola Tioluwani'
+              src={userImage}
+            />{' '}
+
+
+          </WrapItem>
+        </Wrap>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginLeft: "5px" }}>
+          <div>
+            user nane
           </div>
         </div>
 
